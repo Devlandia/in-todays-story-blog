@@ -3,11 +3,11 @@
 # ----------------------- #
 
 url: http://devlandia.github.io/in-todays-story-blog
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+title: In Todays Story Blog
+#subtitle: A blogging framework for hackers.
+#author: Your Name
 simple_search: https://www.google.com/search
-description:
+description: we saw that everyday we learn something new and how important is to share this new acquired knowledge with our friends. And for that we built this magic castle to keep everything we learn. Here all books and scrolls are stored in folders. You can use a existing folder to store something you found or create a new one in case no one had found something similar yet.Remember to keep the castle clean and neat and everything in its place.
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -64,13 +64,13 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user: Devlandia
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: devlandia
 twitter_tweet_button: true
 
 # Google +1
@@ -92,10 +92,10 @@ delicious_count: 3
 
 # Disqus Comments
 disqus_short_name:
-disqus_show_comment_count: false
+disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id:
 
 # Facebook Like
-facebook_like: false
+facebook_like: true
