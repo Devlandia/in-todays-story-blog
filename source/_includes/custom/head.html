@@ -1,3 +1,19 @@
 <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href='https://fonts.googleapis.com/css?family=Noto+Serif:400,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+<meta property="og:title" content="{% if page.title %}{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %} - {% endif %}{{ site.title }}">
+<meta property="og:type" content="{% if page.single %}article{% else %}website{% endif %}">
+<meta property="og:site_name" content="{{ site.title }}">
+
+{% if page.description %}
+  <meta property="og:description" content="{{ page.description }}">
+{% else %}
+  <meta property="og:description" content="{{ site.description }}">
+{% endif %}
+
+{% if page.cover %}
+  <meta property="og:image" content="{{ site.url }}{{ page.cover }}">
+{% else %}
+  <meta property="og:image" content="{{ site.url }}{{ site.cover }}">
+{% endif %}

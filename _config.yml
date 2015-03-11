@@ -2,8 +2,9 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://devlandia.github.io/in-todays-story-blog
+url: http://in-todays-story.com
 title: In Todays Story Blog
+cover: /images/he-man.jpg
 #subtitle: A blogging framework for hackers.
 #author: Your Name
 simple_search: https://www.google.com/search
