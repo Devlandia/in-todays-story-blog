@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <description>by Fellipe Brito about Ruby, Clojure, VIM and an Engineer&#39;s life</description>
+    <link>http://in-todays-story.com/</link>
+    <atom:link href="http://in-todays-story.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 29 Dec 2015 04:08:34 +0000</pubDate>
+    <lastBuildDate>Tue, 29 Dec 2015 04:08:34 +0000</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Dynamic browser search from a yanked text in VIM from a vagrant box</title>
+        <description>&lt;p&gt;&lt;em&gt;by &lt;a href=&quot;https://github.com/fellipebrito&quot;&gt;@fellipebrito&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;“Me and Ms. Mouse… we have a thing”&lt;/em&gt; - I hate to use the mouse. Not only because I want to show off my abilities with the keyboard everytime a new fellow developer comes over my desk but mainly because it slows me down. I’ve invested some time in the last two years to get my hands as far as away from the mouse as possible. Even more than slow me down, the movement from keyboard to mouse and back to the keyboard can be harmful to your wrists, but it is another story.&lt;/p&gt;
+
+&lt;p&gt;I like to use the term “I’m in the matrix” when I’m coding. Because this is how I feel, and also because everyone else understands I’m with my terminal in full-screen mode and notifications turned off. The problem is that “write code” is not the main task of a developers’ life. We do not like to admit, but we spend a lot of time looking for an answer to dumb questions and reading through APIs that we’ve already read before but we just did not memorize it. This is another thing that bothers me: _&lt;open terminal=&quot;&quot;&gt; &lt;tmux&gt; &lt;vim&gt; &lt;start coding=&quot;&quot;&gt; &lt;how do=&quot;&quot; i=&quot;&quot; do...=&quot;&quot; question=&quot;&quot;&gt; &amp;lt;alt + tab&amp;gt; &lt;chrome&gt; &amp;lt;google/github/stackoverflow&amp;gt; &amp;lt;ctrl + v&amp;gt; &lt;get answers=&quot;&quot;&gt;_ and the idea that I do that at least 20 times each day.&lt;/get&gt;&lt;/chrome&gt;&lt;/how&gt;&lt;/start&gt;&lt;/vim&gt;&lt;/tmux&gt;&lt;/open&gt;&lt;/p&gt;
+
+&lt;p&gt;There are so many steps - mouse interactions and keystrokes - in the whole process I described above that if I only try to make a simple math ( ( keystrokes + mouse clicks ) * 20 ) I will start to get mad at me! It is A LOT of time lost, and as once Bruce Lee said:
+&amp;gt;&lt;em&gt;“If you love life, don’t waste time, for time is what life is made up of.”&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;what-bothers-memarkdown&quot;&gt;what-bothers-me.markdown&lt;/h3&gt;
+
+&lt;p&gt;I’ve seen some folks that have this practice of creating a simple markdown file somewhere so they can keep a track of everything that bothers them but is not a “must to be fixed now” thing. I like this practice, so I have an alias on my VIM that opens this file for me with two keystrokes. It was in this file that I saved the quote &lt;em&gt;“I hate to use the mouse to copy text from vim and then alt-tab to Chrome every time I want to look for something”&lt;/em&gt;. It was there, saved as a small thorn in my finger. Every time I went through this process I felt the pain. Two days ago I watched 25% of a youtube video where the developer had an idea for his emacs. So before I finish watching, I thought: “Ok, I will try to fix this issue myself, and later on I come back to see how he did it”. So here we go.&lt;/p&gt;
+
+&lt;h3 id=&quot;tldr---ok-code-starts-here&quot;&gt;tl;dr?! - Ok, code starts here…&lt;/h3&gt;
+
+&lt;h4 id=&quot;expect&quot;&gt;Expect&lt;/h4&gt;
+&lt;p&gt;First of all, you must have expect installed in your unix. &lt;em&gt;“OH, come on, you do not know what is expect?”&lt;/em&gt;. Dude, go for it here: &lt;a href=&quot;http://www.admin-magazine.com/Articles/Automating-with-Expect-Scripts&quot;&gt;Using Expect Scripts to Automate Tasks&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;automate-ssh-access-to-your-computer-from-vagrant&quot;&gt;Automate SSH access to your computer from vagrant&lt;/h4&gt;
+&lt;p&gt;My personal computer is dumb. It does not have GitHub keys, Ruby, MySQL or any other “dev stuff”. The only tool this computer has is a vagrant box (or some boxes). There, inside my vagrant is where I’m happy. The problem is that this vagrant box does not have access to my browser, file preview and other apps that I use.&lt;/p&gt;
+
+&lt;p&gt;My plan was simple: I’d like to &lt;strong&gt;yank a text on vim, execute few keystrokes and then an automated script would open my browser and search for this text in google&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you want to have an executable file, you should start it with a header that gives it some information about how it should be executed.&lt;/p&gt;
+
+&lt;p&gt;```bash
+#!/usr/bin/expect -f
+# Use: browser_search.sh &lt;query-to-be-searched&gt;&lt;/query-to-be-searched&gt;&lt;/p&gt;
+
+&lt;p&gt;set QUERY [lindex $argv 0]
+```&lt;/p&gt;
+
+&lt;p&gt;Now that I have the query I want to search as my argument, and matrix know it should use expect -f, it is time to ssh back into my main computer:
+&lt;code&gt;bash
+spawn ssh username@hostname
+expect &quot;Password: &quot;
+send &quot;your-password\r&quot;
+expect &quot;$ &quot;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Look how amazing &lt;em&gt;expect&lt;/em&gt; is!&lt;/p&gt;
+
+&lt;p&gt;Ok, now that I’m on my main computer (a MacOS) it is a matter of open my default browser and access Google:
+&lt;code&gt;bash
+send &quot;open https://www.google.com/#q=${QUERY}\r&quot;
+expect &quot;$ &quot;
+send &quot;exit\r&quot;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The whole script is on this &lt;a href=&quot;https://gist.github.com/fellipebrito/e35f976c3d952d6f4714&quot;&gt;gist&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You can copy/download/modify it and then move into your /bin/&lt;file_name&gt;.sh directory. Do not forget to give it 755 permission so it looks like that:
+```bash
+-rwxr-xr-x 1 root 259 Mar 18 19:21 /bin/browser_search.sh*
+```&lt;/file_name&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;vim-alias---how-to-copy-yanked-lines-in-vims-command-line&quot;&gt;Vim alias - how to copy yanked lines in VIM’s command line&lt;/h4&gt;
+
+&lt;p&gt;Now that I have this script I have one more challenge, I want to yank a text and with two or three keystrokes send it to the terminal?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+map &amp;lt;Leader&amp;gt;bs :!browser_search.sh &amp;lt;C-r&amp;gt;&quot;&amp;lt;CR&amp;gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here the &lt;code&gt;map &amp;lt;Leader&amp;gt;bs &lt;/code&gt; is defining my keystroke.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;:!browser_search.sh &lt;/code&gt; tells VIM that it should execute this command on the command line.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;C-r&amp;gt;&quot;&lt;/code&gt; is the command to paste the text is yanked on the command line. And finally the &lt;code&gt;&amp;lt;CR&amp;gt;&lt;/code&gt; is the &lt;enter&gt; key.&lt;/enter&gt;&lt;/p&gt;
+
+&lt;p&gt;It works very well, and my plan in the future is to improve it so I can search not only on Google but define if I want to search directly in one specific place.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://gifyu.com/images/dynamic-browser-search.gif&quot;&gt;&lt;img src=&quot;http://gifyu.com/images/dynamic-browser-search.gif&quot; alt=&quot;ScreenShot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 19 Mar 2015 15:00:00 +0000</pubDate>
+        <link>http://in-todays-story.com/vim/search/bash/vagrant/2015/03/19/dynamic-browser-search/</link>
+        <guid isPermaLink="true">http://in-todays-story.com/vim/search/bash/vagrant/2015/03/19/dynamic-browser-search/</guid>
+        
+        
+        <category>vim</category>
+        
+        <category>search</category>
+        
+        <category>bash</category>
+        
+        <category>vagrant</category>
+        
+      </item>
+    
+      <item>
+        <title>Resizing splits</title>
+        <description>&lt;p&gt;&lt;em&gt;by &lt;a href=&quot;https://github.com/fellipebrito&quot;&gt;@fellipebrito&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;One of the things I most like in VIM is the easy way to split its environment. Using VIM splits + &lt;a href=&quot;https://github.com/kien/ctrlp.vim&quot;&gt;ctrlP&lt;/a&gt; + &lt;a href=&quot;http://en.wikipedia.org/wiki/Tmux&quot;&gt;tMux&lt;/a&gt; makes me a lot more productive.&lt;/p&gt;
+
+&lt;p&gt;Sometimes I want to read a manual, a helper, a README, or even just want to read my code in ‘full screen’. This is how I do it:&lt;/p&gt;
+
+&lt;p&gt;Maximize the current sprint in the vertical:
+&lt;code&gt;
+ctrl + w _
+&lt;/code&gt;
+&amp;gt; &lt;em&gt;ctrl + w means you have to press the key Ctrl and the key w at the same time and then release them to press the next key&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Maximize the current sprint in the horizontal:
+&lt;code&gt;
+ctrl + w |
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Resize all splits to be the same (also called ‘normalize’)
+&lt;code&gt;
+ctrl + w =
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Ask for help! VIM’s helper is pretty useful, let’s say you like the examples above and want to go further. I’d suggest that before you google it, you invest sometime → some time reading VIM’s help.
+&lt;code&gt;
+:help :split
+&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 11 Mar 2015 16:00:00 +0000</pubDate>
+        <link>http://in-todays-story.com/vim/2015/03/11/resizing-splits/</link>
+        <guid isPermaLink="true">http://in-todays-story.com/vim/2015/03/11/resizing-splits/</guid>
+        
+        
+        <category>vim</category>
+        
+      </item>
+    
+      <item>
+        <title>Lein Ring Server running in the background</title>
+        <description>&lt;p&gt;&lt;em&gt;by &lt;a href=&quot;https://github.com/fellipebrito&quot;&gt;@fellipebrito&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve been working in → working on a study case that has as a main target to run two different servers at the same time - one for the backend and the other for the frontend. &lt;a href=&quot;https://github.com/fellipebrito/front-back-case&quot;&gt;front-back-case&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In order to not lose time and type less, I’ve been creating scenarios for every back/front server combination. So I can start and kill them with only one line. &lt;a href=&quot;https://github.com/fellipebrito/front-back-case/tree/master/bin&quot;&gt;scripts to start and kill servers&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Today, after I code a simple server in Clojure, I had to figure out how to start a ring server in the background. After few minutes looking for a solution I realised that I could do it using nohup:
+```
+nohup lein ring server-headless 8080 &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 11 Mar 2015 15:30:00 +0000</pubDate>
+        <link>http://in-todays-story.com/shell/clojure/2015/03/11/lein-ring-server-running-in-the-background/</link>
+        <guid isPermaLink="true">http://in-todays-story.com/shell/clojure/2015/03/11/lein-ring-server-running-in-the-background/</guid>
+        
+        
+        <category>shell</category>
+        
+        <category>clojure</category>
+        
+      </item>
+    
+      <item>
+        <title>Cross Origin Resource Sharing in Sinatra (ruby) and Ring (clojure) - CORS</title>
+        <description>&lt;p&gt;&lt;em&gt;by &lt;a href=&quot;https://github.com/fellipebrito&quot;&gt;@fellipebrito&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Few weeks ago I started thinking about the idea of bigger layers of separation between the frontend and the backend. In my perfect world, I would create a project that would rely 100% of its dynamic content in an API that would have only one goal: &lt;strong&gt;talk to the database and return a JSON&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In this perfect world, specifications would be the first thing to write. You sit down with the tech team, review the mockups, define the JSON the frontend needs, write it down and done! &lt;strong&gt;Frontend team will have its content mocked and ready to go, and backend team would have a perfect spec to return.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Then the time to code came. I invested few hours coding two simple applications. One to handle the backend and another one to provide a simple HTML entry for my localhost. The backend server is both made in &lt;strong&gt;Sinatra and Clojure&lt;/strong&gt; I finished this task in few minutes. The next task was to make them talk to each other. BOOM!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;“No ‘Access-Control-Allow-Origin’ header is present on the requested resource”.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;if you want to step out all the explanation and jump direct to the code, here is the commit that saved my life: &lt;a href=&quot;https://github.com/fellipebrito/front-back-case/commit/5dede83ab8ae5ab320fe2041160c07e18e7f4b7e&quot;&gt;Enables cross origin access&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The error above is the one I found on my chrome web development tool, and then after few clicks here and there, CORS came up to me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Why  is CORS a problem?&lt;/strong&gt;
+Regular web pages can use the XMLHttpRequest object to send and receive data from remote servers, but they’re limited by the same origin policy.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;So here is my problem:&lt;/strong&gt; I have two different sources, and I want them to talk through a SPA.&lt;/p&gt;
+
+&lt;p&gt;Thankfully both Sinatra and Ring (for Clojure) offer us a solution for that: &lt;a href=&quot;https://github.com/britg/sinatra-cross_origin&quot;&gt;Sinatra cross-origin&lt;/a&gt; - a Cross Origin Request Sharing extension for Sinatra and &lt;a href=&quot;https://github.com/r0man/ring-cors&quot;&gt;Ring middleware for Cross-Origin Resource Sharing&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;sinatra&quot;&gt;Sinatra&lt;/h3&gt;
+&lt;p&gt;Three steps:&lt;/p&gt;
+
+&lt;p&gt;1) add the gem to your Gemfile
+&lt;code&gt;ruby
+&#39;sinatra-cross_origin&#39;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;2) require it in your app
+&lt;code&gt;ruby
+require &quot;sinatra/cross_origin&quot;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;3) enable it inside your app
+&lt;code&gt;ruby
+register Sinatra::CrossOrigin
+configure do
+      enable :cross_origin
+end
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;ringclojure&quot;&gt;Ring/Clojure&lt;/h3&gt;
+&lt;p&gt;Three steps:&lt;/p&gt;
+
+&lt;p&gt;1) Add the dependence in project.clj
+&lt;code&gt;clojure
+[ring-cors &quot;0.1.6&quot;]
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;2) require it in the handler
+&lt;code&gt;clojure
+[ring.middleware.cors :refer [wrap-cors]]
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;3) wrap the routes with it
+```clojure
+;; from:
+(def app
+  (wrap-defaults app-routes site-defaults))&lt;/p&gt;
+
+&lt;p&gt;;; to:
+(def app 
+  (-&amp;gt; (wrap-defaults app-routes site-defaults)
+      (wrap-cors :access-control-allow-origin #”http://localhost:3000”
+                 :access-control-allow-methods [:get :put :post]
+                 :access-control-allow-headers [“Content-Type”])))
+```&lt;/p&gt;
+
+&lt;p&gt;Done!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 10 Mar 2015 20:00:00 +0000</pubDate>
+        <link>http://in-todays-story.com/javascript/sinatra/ruby/clojure/ring/ajax/2015/03/10/cross-origin-resource-sharing/</link>
+        <guid isPermaLink="true">http://in-todays-story.com/javascript/sinatra/ruby/clojure/ring/ajax/2015/03/10/cross-origin-resource-sharing/</guid>
+        
+        
+        <category>javascript</category>
+        
+        <category>sinatra</category>
+        
+        <category>ruby</category>
+        
+        <category>clojure</category>
+        
+        <category>ring</category>
+        
+        <category>ajax</category>
+        
+      </item>
+    
+      <item>
+        <title>How to list all files larger/smaller than certain size</title>
+        <description>&lt;p&gt;If you want to list all flac files smaller than 12mb:&lt;/p&gt;
+
+&lt;pre class=&quot;lang:default decode:true&quot;&gt;find -name &quot;*.flac&quot; -size -12000k&lt;/pre&gt;
+
+&lt;p&gt;If you want to list files bigger than, just change the &lt;strong&gt;- &lt;/strong&gt;for a &lt;strong&gt;+&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre class=&quot;lang:default decode:true&quot;&gt;find -name &quot;*.flac&quot; -size +12000k&lt;/pre&gt;
+
+&lt;p&gt;Now if you want to delete them, just add a -delete after that:&lt;/p&gt;
+
+&lt;pre class=&quot;lang:default decode:true&quot;&gt;find -name &quot;*.flac&quot; -size -12000k -delete&lt;/pre&gt;
+</description>
+        <pubDate>Mon, 15 Sep 2014 00:00:00 +0000</pubDate>
+        <link>http://in-todays-story.com/2014/09/how-to-list-all-files-largersmaller-than-certain-size/</link>
+        <guid isPermaLink="true">http://in-todays-story.com/2014/09/how-to-list-all-files-largersmaller-than-certain-size/</guid>
+        
+        
+        <category>uncategorized</category>
+        
+      </item>
+    
+      <item>
+        <title>Sample post from harmony</title>
+        <description>&lt;p&gt;Just a sample post to show some of the &lt;em&gt;typography&lt;/em&gt; elements supported from 
+&lt;strong&gt;harmony&lt;/strong&gt; theme.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A blockquote:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Donec in mollis eros, nec rutrum turpis. &lt;strong&gt;Curabitur&lt;/strong&gt; sem elit, semper nec volutpat quis, laoreet et sapien. In felis erat, rhoncus sed pellentesque mollis, tincidunt quis elit.
+- By Someone&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;header-2&quot;&gt;Header 2&lt;/h2&gt;
+
+&lt;p&gt;Duis lacinia commodo dui, vel aliquam metus hendrerit eu. Integer et scelerisque dui. Sed nec molestie quam. Donec sit amet nisl a massa commodo ultrices nec quis nunc. Aenean aliquet eu arcu adipiscing dignissim. Nunc dictum elit vitae dolor molestie aliquet.&lt;/p&gt;
+
+&lt;p&gt;Example code:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Tom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;A list:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Praesent nisi elit, bibendum ut consectetur ac, aliquet in nunc&lt;/li&gt;
+  &lt;li&gt;Donec ante est, volutpat in mi et, pulvinar congue dolor.&lt;/li&gt;
+  &lt;li&gt;Quisque ultrices pulvinar sollicitudin.&lt;/li&gt;
+  &lt;li&gt;Duis elementum odio eu euismod suscipit.&lt;/li&gt;
+  &lt;li&gt;Integer enim lorem, interdum sit amet consectetur non, bibendum eget neque.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A numbered list:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Praesent nisi elit, bibendum ut consectetur ac, aliquet in nunc.&lt;/li&gt;
+  &lt;li&gt;Donec ante est, volutpat in mi et, pulvinar congue dolor.&lt;/li&gt;
+  &lt;li&gt;Quisque ultrices pulvinar sollicitudin.&lt;/li&gt;
+  &lt;li&gt;Duis elementum odio eu euismod suscipit.&lt;/li&gt;
+  &lt;li&gt;Integer enim lorem, interdum sit amet consectetur non, bibendum eget neque.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Definition list:&lt;/p&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;Curabitur cursus magna eu sem cursus&lt;/dt&gt;
+  &lt;dd&gt;ac ultrices urna pharetra.&lt;/dd&gt;
+  &lt;dd&gt;Duis scelerisque ipsum eu luctus elementum.&lt;/dd&gt;
+  &lt;dt&gt;Pellentesque habitant morbi tristique senectus&lt;/dt&gt;
+  &lt;dd&gt;Curabitur malesuada lacus ac gravida porttitor&lt;/dd&gt;
+  &lt;dd&gt;Duis sodales feugiat lorem et mollis.&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;Want me to suggest something? Please &lt;a href=&quot;https://github.com/web-create/harmony/issues/new&quot;&gt;Send me a request&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 19 Aug 2014 23:56:45 +0000</pubDate>
+        <link>http://in-todays-story.com/sample-post</link>
+        <guid isPermaLink="true">http://in-todays-story.com/sample-post</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>What is Jekyll!</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. Here is a little quote from the official website:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It takes a template directory containing raw text files in various formats, runs it through &lt;a href=&quot;http://daringfireball.net/projects/markdown/&quot;&gt;Markdown&lt;/a&gt; (or &lt;a href=&quot;http://redcloth.org/textile&quot;&gt;Textile&lt;/a&gt;) and Liquid converters, and spits out a complete, ready-to-publish static website suitable for serving with your favorite web server. Jekyll also happens to be the engine behind &lt;a href=&quot;http://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;, which means you can use Jekyll to host your project’s page, blog, or website from GitHub’s servers for free.
+- jekyllrb.com&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 28 Jul 2014 22:48:45 +0000</pubDate>
+        <link>http://in-todays-story.com/blog/jekyll/2014/07/28/welcome-to-jekyll/</link>
+        <guid isPermaLink="true">http://in-todays-story.com/blog/jekyll/2014/07/28/welcome-to-jekyll/</guid>
+        
+        
+        <category>blog</category>
+        
+        <category>jekyll</category>
+        
+      </item>
+    
+      <item>
+        <title>How to update my remote branch information</title>
+        <description>&lt;p&gt;To clean-up your remote references:&lt;/p&gt;
+
+&lt;pre class=&quot;lang:default decode:true&quot;&gt;git remote prune origin&lt;/pre&gt;
+
+&lt;p&gt;If you want to clean up your local mess, you also can use:&lt;/p&gt;
+
+&lt;pre class=&quot;lang:default decode:true&quot;&gt;git branch -r&lt;/pre&gt;
+</description>
+        <pubDate>Tue, 06 May 2014 00:00:00 +0000</pubDate>
+        <link>http://in-todays-story.com/2014/05/how-to-update-my-remote-branch-information/</link>
+        <guid isPermaLink="true">http://in-todays-story.com/2014/05/how-to-update-my-remote-branch-information/</guid>
+        
+        
+        <category>uncategorized</category>
+        
+      </item>
+    
+      <item>
+        <title>Fatal error while bundling capybara-webkit</title>
+        <description>&lt;p&gt;The error:&lt;/p&gt;
+
+&lt;pre class=&quot;lang:default decode:true&quot;&gt;Fatal error while bundling capybara-webkit (0.10.1) with native extensions&lt;/pre&gt;
+
+&lt;p&gt;How to fix:&lt;/p&gt;
+
+&lt;pre class=&quot;lang:default decode:true&quot;&gt;apt-get install qt4
+gem install capybara-webkit -v &#39;1.1.0&#39;&lt;/pre&gt;
+
+&lt;p&gt;If you need further information read &lt;a href=&quot;https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You’re welcome.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 19 Mar 2014 00:00:00 +0000</pubDate>
+        <link>http://in-todays-story.com/2014/03/fatal-error-while-bundling-capybara-webkit/</link>
+        <guid isPermaLink="true">http://in-todays-story.com/2014/03/fatal-error-while-bundling-capybara-webkit/</guid>
+        
+        
+        <category>capybara</category>
+        
+        <category>cucumber</category>
+        
+        <category>ruby</category>
+        
+        <category>terminal</category>
+        
+        <category>unix</category>
+        
+      </item>
+    
+      <item>
+        <title>How to set your unix default editor</title>
+        <description>&lt;p&gt;I can’t count how many times in the past I had troubles with unix complaining I don’t have a default editor.&lt;/p&gt;
+
+&lt;p&gt;To fix this issue is ridiculously simple:, just edit your &lt;a href=&quot;http://en.wikipedia.org/wiki/Bash_(Unix_shell)&quot; target=&quot;_blank&quot;&gt;bashrc&lt;/a&gt; and add this line&lt;span style=&quot;line-height: 1.5;&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
+
+&lt;pre class=&quot;lang:default decode:true&quot; title=&quot;bashrc&quot;&gt;export EDITOR=&#39;vim&#39;&lt;/pre&gt;
+</description>
+        <pubDate>Sun, 23 Feb 2014 00:00:00 +0000</pubDate>
+        <link>http://in-todays-story.com/2014/02/how-to-set-your-unix-default-editor/</link>
+        <guid isPermaLink="true">http://in-todays-story.com/2014/02/how-to-set-your-unix-default-editor/</guid>
+        
+        
+        <category>alias</category>
+        
+        <category>terminal</category>
+        
+        <category>ubuntu</category>
+        
+        <category>unix</category>
+        
+      </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Fatal error while bundling capybara-webkit</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
+">
+        <link rel="canonical"
+        href="http://in-todays-story.com/2014/03/fatal-error-while-bundling-capybara-webkit/">
+
+        <!-- Harmony styles -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+
+        <!-- Modernizr js -->
+        <script async src="/assets/js/modernizr.js"></script>
+
+        <!-- IE Fixes -->
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="theme-base-01">
+        <header class="main-header">
+            <div class="wc-container">
+                <h1><a href="/">In Todays Story</a></h1>
+                <h5 style="text-align: center">by Fellipe Brito about Ruby, Clojure, VIM and an Engineer's life</h5>
+                <ul>
+  <li>
+    <a href="http://in-todays-story.com/about">About</a><span>/</span>
+  </li>
+  <li>
+    <a href="http://in-todays-story.com/blog">Blog</a><span>/</span>
+  </li>
+</ul>
+
+            </div>
+        </header>
+        <div class="page-content wc-container">
+
+  <div class="post">
+    <h1>Fatal error while bundling capybara-webkit</h1>
+    <p class="post-meta">
+      
+      <span class="categories">
+      capybara, cucumber, ruby, terminal, and unix
+      </span> |
+      
+      <span class="post-date">
+      Mar 19, 2014
+      </span>
+    </p>
+    <div class="post">
+      <p>The error:</p>
+
+<pre class="lang:default decode:true">Fatal error while bundling capybara-webkit (0.10.1) with native extensions</pre>
+
+<p>How to fix:</p>
+
+<pre class="lang:default decode:true">apt-get install qt4
+gem install capybara-webkit -v '1.1.0'</pre>
+
+<p>If you need further information read <a href="https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit" target="_blank">here</a></p>
+
+<p>You’re welcome.</p>
+
+    </div>
+  </div>
+
+
+  
+  <div class="related">
+    <h4>Related Posts</h2>
+    <ul class="posts">
+        
+        <li>
+        <span>19 Mar 2015 &raquo;</span>
+        <a href="http://in-todays-story.com/vim/search/bash/vagrant/2015/03/19/dynamic-browser-search/">Dynamic browser search from a yanked text in VIM from a vagrant box</a>
+        </li>
+        
+        <li>
+        <span>11 Mar 2015 &raquo;</span>
+        <a href="http://in-todays-story.com/vim/2015/03/11/resizing-splits/">Resizing splits</a>
+        </li>
+        
+        <li>
+        <span>11 Mar 2015 &raquo;</span>
+        <a href="http://in-todays-story.com/shell/clojure/2015/03/11/lein-ring-server-running-in-the-background/">Lein Ring Server running in the background</a>
+        </li>
+        
+    </ul>
+  </div>
+  
+
+  <div class="post-footer">
+    <div class="column-1">
+      
+        <a href="http://in-todays-story.com/2014/02/how-to-set-your-unix-default-editor/"><< Older</a>
+      
+    </div>
+    <div class="column-2"><a href="http://in-todays-story.com/ ">Home</a></div>
+    <div class="column-3">
+      
+        <a href="http://in-todays-story.com/2014/05/how-to-update-my-remote-branch-information/">Newer >></a>
+      
+    </div>
+  </div>
+</div>
+
+        <footer class="main-footer">
+            <div class="wc-container">
+                <div class="column one">
+                    <h6>Few more links</h6>
+<ul class="menu">
+    <li><a href="http://in-todays-story.com/about">About</a></li>
+    <li><a href="http://in-todays-story.com/blog">Blog</a></li>
+    <li><a href="http://in-todays-story.com/faq">Help / FAQ</a></li>    
+</ul>		
+                </div>
+                <div class="column two">
+                    <h6>Follow me</h6>
+
+<ul class="social-media">
+
+
+    
+    <li>
+        <a title="fellipeeduardo on Twitter"
+            href="https://twitter.com/fellipeeduardo"
+            class="twitter wc-img-replace" target="_blank">Twitter</a>
+    </li>
+    
+
+    
+    <li>
+        <a title="fellipebrito on Github"
+            href="https://github.com/fellipebrito"
+            class="github wc-img-replace" target="_blank">Github</a>
+    </li>
+    
+
+    
+
+    
+</ul>
+
+                </div>
+            </div>
+            <p class="wc-container disclaimer">
+                
+	Made by <a href="http://fellipebrito.com" target="_blank">Fellipe Brito</a>
+
+Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>
+
+            </p>
+        </footer>
+        <script type="text/javascript">
+          /* To avoid render blocking css */
+          var cb = function() {
+            var l = document.createElement('link'); l.rel = 'stylesheet';
+            l.href = 'http://fonts.googleapis.com/css?family=Ubuntu+Mono&subset=latin';
+            var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+          };
+          var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+              webkitRequestAnimationFrame || msRequestAnimationFrame;
+          if (raf) raf(cb);
+          else window.addEventListener('load', cb);
+        </script>
+        <!-- jQuery -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- When no internet load JQuery from local -->
+        <script>window.jQuery || document.write('<script src="/assets/js/jquery.min.js"><\/script>')</script>
+        <!-- Site js -->
+        <script src="/assets/js/all.js"></script>
+        <!-- Google analytics  -->
+        
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    </body>
+</html>

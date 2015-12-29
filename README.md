@@ -1,0 +1,1 @@
+Yes, my nerd blog.

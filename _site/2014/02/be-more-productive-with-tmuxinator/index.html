@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Be more productive with TMUXINATOR</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
+">
+        <link rel="canonical"
+        href="http://in-todays-story.com/2014/02/be-more-productive-with-tmuxinator/">
+
+        <!-- Harmony styles -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+
+        <!-- Modernizr js -->
+        <script async src="/assets/js/modernizr.js"></script>
+
+        <!-- IE Fixes -->
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="theme-base-01">
+        <header class="main-header">
+            <div class="wc-container">
+                <h1><a href="/">In Todays Story</a></h1>
+                <h5 style="text-align: center">by Fellipe Brito about Ruby, Clojure, VIM and an Engineer's life</h5>
+                <ul>
+  <li>
+    <a href="http://in-todays-story.com/about">About</a><span>/</span>
+  </li>
+  <li>
+    <a href="http://in-todays-story.com/blog">Blog</a><span>/</span>
+  </li>
+</ul>
+
+            </div>
+        </header>
+        <div class="page-content wc-container">
+
+  <div class="post">
+    <h1>Be more productive with TMUXINATOR</h1>
+    <p class="post-meta">
+      
+      <span class="categories">
+      alias, ruby, terminal, tmux, tmuxinator, ubuntu, and unix
+      </span> |
+      
+      <span class="post-date">
+      Feb 23, 2014
+      </span>
+    </p>
+    <div class="post">
+      <p><img alt="" src="https://f.cloud.github.com/assets/141213/916084/065fef7c-fe82-11e2-9c23-a9622c7d83c3.png" width="2560" height="1440" /></p>
+
+<p><a href="https://github.com/tmuxinator/tmuxinator" target="_blank">TMUXINATOR</a> is a <a href="http://en.wikipedia.org/wiki/Tmux" target="_blank">TMUX</a> session manager; <a href="http://en.wikipedia.org/wiki/Tmux" target="_blank">TMUX</a> is a software that lets you switch easily between several programs in one terminal, detach them (they keep running in the background) and reattach them to a different terminal. And do a lot more. See <a href="http://www.openbsd.org/cgi-bin/man.cgi?query=tmux&amp;sektion=1" target="_blank">the manual</a>.</p>
+
+<p>Requirements:<br />
+- <a href="http://code.fellipebrito.com/2014/02/how-to-set-your-unix-default-editor/" target="_blank">Define your bash $EDITOR</a>;<br />
+- <a href="http://rvm.io/rvm/install" target="_blank">Ruby installed</a><br />
+- TMUX 1.8+ installed, if you have any troubled installing this version in your Ubuntu <a href="http://askubuntu.com/a/324949" target="_blank">you can follow these tips</a>.</p>
+
+<p><a href="https://github.com/tmuxinator/tmuxinator" target="_blank">TMUXINATOR</a> is a rubygem, to install it is easy:</p>
+
+<pre title="TMUXINATOR gem install">gem install tmuxinator</pre>
+
+<p>After you install it you can start a new project using:</p>
+
+<pre>tmuxinator open my_project</pre>
+
+<p>This command will open a YAML file inside your default editor (that I wish to be VIM):</p>
+
+<pre title="TMUXINATOR config file"># ~/.tmuxinator/my_project.yml
+
+name: my_project
+root: ~/
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+windows:
+  - editor:
+      layout: main-vertical
+      panes:
+        - vim
+        - rspec
+  - server: bundle exec rails s
+  - logs: tail -f logs/development.log</pre>
+
+<p>If you only read this file you will be amazed with all the possibilities it gives to you. This basic config file is really useful if you work with a Rails project. It gives to you three windows ( rspec and editor, server and log reader ) ready to dive in code.<span style="line-height: 1.5;"><br /> </span></p>
+
+<p>Well, with this file saved you can start your day typing:</p>
+
+<pre title="Starting TMUX">mux start meu_projeto</pre>
+
+<p>That’s it, your whole dev environment is active and ready to rumble. You can configure it as you wish: you need a ssh connection, new editors, a database window, top, capistrano? You can do it and much more, explore its manual and you will see how powerful it is.</p>
+
+<p>You can also share its .conf with your team and avoid those 15 minutes every developer loses to start to code in the morning.</p>
+
+<p>Now let’s do a simple math. Saving 15 minutes everyday * 20 days you <strong>save 5 hours of work per month per developer</strong>.</p>
+
+<p>Now multiply this “save time” * your dev team (8 devs?!?). You are saving A WEEK of time and money with this simple config file.</p>
+
+<p>Cheers to productivity and money saved!</p>
+
+    </div>
+  </div>
+
+
+  
+  <div class="related">
+    <h4>Related Posts</h2>
+    <ul class="posts">
+        
+        <li>
+        <span>19 Mar 2015 &raquo;</span>
+        <a href="http://in-todays-story.com/vim/search/bash/vagrant/2015/03/19/dynamic-browser-search/">Dynamic browser search from a yanked text in VIM from a vagrant box</a>
+        </li>
+        
+        <li>
+        <span>11 Mar 2015 &raquo;</span>
+        <a href="http://in-todays-story.com/vim/2015/03/11/resizing-splits/">Resizing splits</a>
+        </li>
+        
+        <li>
+        <span>11 Mar 2015 &raquo;</span>
+        <a href="http://in-todays-story.com/shell/clojure/2015/03/11/lein-ring-server-running-in-the-background/">Lein Ring Server running in the background</a>
+        </li>
+        
+    </ul>
+  </div>
+  
+
+  <div class="post-footer">
+    <div class="column-1">
+      
+        <a href="http://in-todays-story.com/2014/02/saving-time-and-avoiding-keystrokes/"><< Older</a>
+      
+    </div>
+    <div class="column-2"><a href="http://in-todays-story.com/ ">Home</a></div>
+    <div class="column-3">
+      
+        <a href="http://in-todays-story.com/2014/02/how-to-set-your-unix-default-editor/">Newer >></a>
+      
+    </div>
+  </div>
+</div>
+
+        <footer class="main-footer">
+            <div class="wc-container">
+                <div class="column one">
+                    <h6>Few more links</h6>
+<ul class="menu">
+    <li><a href="http://in-todays-story.com/about">About</a></li>
+    <li><a href="http://in-todays-story.com/blog">Blog</a></li>
+    <li><a href="http://in-todays-story.com/faq">Help / FAQ</a></li>    
+</ul>		
+                </div>
+                <div class="column two">
+                    <h6>Follow me</h6>
+
+<ul class="social-media">
+
+
+    
+    <li>
+        <a title="fellipeeduardo on Twitter"
+            href="https://twitter.com/fellipeeduardo"
+            class="twitter wc-img-replace" target="_blank">Twitter</a>
+    </li>
+    
+
+    
+    <li>
+        <a title="fellipebrito on Github"
+            href="https://github.com/fellipebrito"
+            class="github wc-img-replace" target="_blank">Github</a>
+    </li>
+    
+
+    
+
+    
+</ul>
+
+                </div>
+            </div>
+            <p class="wc-container disclaimer">
+                
+	Made by <a href="http://fellipebrito.com" target="_blank">Fellipe Brito</a>
+
+Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>
+
+            </p>
+        </footer>
+        <script type="text/javascript">
+          /* To avoid render blocking css */
+          var cb = function() {
+            var l = document.createElement('link'); l.rel = 'stylesheet';
+            l.href = 'http://fonts.googleapis.com/css?family=Ubuntu+Mono&subset=latin';
+            var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+          };
+          var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+              webkitRequestAnimationFrame || msRequestAnimationFrame;
+          if (raf) raf(cb);
+          else window.addEventListener('load', cb);
+        </script>
+        <!-- jQuery -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- When no internet load JQuery from local -->
+        <script>window.jQuery || document.write('<script src="/assets/js/jquery.min.js"><\/script>')</script>
+        <!-- Site js -->
+        <script src="/assets/js/all.js"></script>
+        <!-- Google analytics  -->
+        
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    </body>
+</html>
