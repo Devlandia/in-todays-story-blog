@@ -1,13 +1,9 @@
 ---
 title: Hello World!
 meta_description: there has been an awakening in the force.
-author: fellipe
 layout: post
 permalink: hello-world
-categories:
-  - rspec
-  - rubocop
-  - ruby
+categories: [rspec, rubocop, ruby]
 ---
 Here we go!
 

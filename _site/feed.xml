@@ -3,31 +3,43 @@
   <channel>
     <title></title>
     <description>by Fellipe Brito about Ruby, Clojure, VIM and an Engineer&#39;s life</description>
-    <link>http://in-todays-story.com/</link>
-    <atom:link href="http://in-todays-story.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 29 Dec 2015 04:08:34 +0000</pubDate>
-    <lastBuildDate>Tue, 29 Dec 2015 04:08:34 +0000</lastBuildDate>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 29 Dec 2015 05:10:33 +0000</pubDate>
+    <lastBuildDate>Tue, 29 Dec 2015 05:10:33 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
         <title>Dynamic browser search from a yanked text in VIM from a vagrant box</title>
-        <description>&lt;p&gt;&lt;em&gt;by &lt;a href=&quot;https://github.com/fellipebrito&quot;&gt;@fellipebrito&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+        <description>&lt;p&gt;I hate to use the mouse. Not only because I want to show off my abilities with the keyboard everytime a new fellow developer comes over my desk but mainly because it slows me down. I’ve invested some time in the last two years to get my hands as far away from the mouse as possible. Even more than slowing me down, the movement from keyboard to mouse and back to the keyboard can be harmful to my wrists, but it is another story.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;“Me and Ms. Mouse… we have a thing”&lt;/em&gt; - I hate to use the mouse. Not only because I want to show off my abilities with the keyboard everytime a new fellow developer comes over my desk but mainly because it slows me down. I’ve invested some time in the last two years to get my hands as far as away from the mouse as possible. Even more than slow me down, the movement from keyboard to mouse and back to the keyboard can be harmful to your wrists, but it is another story.&lt;/p&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;I like to use the term “I’m in the matrix” when I’m coding. Because this is how I feel, and also because everyone else understands I’m with my terminal in full-screen mode and notifications turned off. The problem is that “to write code” is not the main task of a developers’ life. We do not like to admit, but we spend a lot of time looking for an answer to dumb questions and reading through APIs that we’ve already read before but we just did not memorize it. This is another thing that bothers me, the idea that I do that at least 20 times every day:&lt;/p&gt;
 
-&lt;p&gt;I like to use the term “I’m in the matrix” when I’m coding. Because this is how I feel, and also because everyone else understands I’m with my terminal in full-screen mode and notifications turned off. The problem is that “write code” is not the main task of a developers’ life. We do not like to admit, but we spend a lot of time looking for an answer to dumb questions and reading through APIs that we’ve already read before but we just did not memorize it. This is another thing that bothers me: _&lt;open terminal=&quot;&quot;&gt; &lt;tmux&gt; &lt;vim&gt; &lt;start coding=&quot;&quot;&gt; &lt;how do=&quot;&quot; i=&quot;&quot; do...=&quot;&quot; question=&quot;&quot;&gt; &amp;lt;alt + tab&amp;gt; &lt;chrome&gt; &amp;lt;google/github/stackoverflow&amp;gt; &amp;lt;ctrl + v&amp;gt; &lt;get answers=&quot;&quot;&gt;_ and the idea that I do that at least 20 times each day.&lt;/get&gt;&lt;/chrome&gt;&lt;/how&gt;&lt;/start&gt;&lt;/vim&gt;&lt;/tmux&gt;&lt;/open&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;open terminal&lt;/li&gt;
+  &lt;li&gt;tmux&lt;/li&gt;
+  &lt;li&gt;vim&lt;/li&gt;
+  &lt;li&gt;start coding&lt;/li&gt;
+  &lt;li&gt;how do I do… question&lt;/li&gt;
+  &lt;li&gt;alt + tab&lt;/li&gt;
+  &lt;li&gt;chrome&lt;/li&gt;
+  &lt;li&gt;google/github/stackoverflow&lt;/li&gt;
+  &lt;li&gt;ctrl + v&lt;/li&gt;
+  &lt;li&gt;get answers&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;There are so many steps - mouse interactions and keystrokes - in the whole process I described above that if I only try to make a simple math ( ( keystrokes + mouse clicks ) * 20 ) I will start to get mad at me! It is A LOT of time lost, and as once Bruce Lee said:
+&lt;p&gt;There are so many steps - mouse interactions and keystrokes - in the whole process I described above that if I only try to make a simple math: &lt;strong&gt;( ( keystrokes + mouse clicks ) * 20 )&lt;/strong&gt; I will start to get mad at me! It is A LOT of time lost, and as once Bruce Lee said:
 &amp;gt;&lt;em&gt;“If you love life, don’t waste time, for time is what life is made up of.”&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;what-bothers-memarkdown&quot;&gt;what-bothers-me.markdown&lt;/h3&gt;
 
-&lt;p&gt;I’ve seen some folks that have this practice of creating a simple markdown file somewhere so they can keep a track of everything that bothers them but is not a “must to be fixed now” thing. I like this practice, so I have an alias on my VIM that opens this file for me with two keystrokes. It was in this file that I saved the quote &lt;em&gt;“I hate to use the mouse to copy text from vim and then alt-tab to Chrome every time I want to look for something”&lt;/em&gt;. It was there, saved as a small thorn in my finger. Every time I went through this process I felt the pain. Two days ago I watched 25% of a youtube video where the developer had an idea for his emacs. So before I finish watching, I thought: “Ok, I will try to fix this issue myself, and later on I come back to see how he did it”. So here we go.&lt;/p&gt;
+&lt;p&gt;I’ve seen some folks that have this practice of creating a simple markdown file somewhere so they can keep track of everything that bothers them but is not a “must to be fixed now” thing. I like this practice, so I have an alias on my VIM that opens this file for me with two keystrokes. It was in this file that I saved the quote &lt;em&gt;“I hate to use the mouse to copy text from vim and then alt-tab to Chrome every time I want to look for something”&lt;/em&gt;. It was there, saved as a small thorn in my finger. Every time I went through this process I felt the pain. Two days ago I watched 25% of a youtube video where the developer had an idea for his emacs. So before I finish watching, I thought: “Ok, I will try to fix this issue myself, and later on I come back to see how he did it”. So here we go.&lt;/p&gt;
 
-&lt;h3 id=&quot;tldr---ok-code-starts-here&quot;&gt;tl;dr?! - Ok, code starts here…&lt;/h3&gt;
+&lt;h3 id=&quot;tldr---ok-code-starts-here&quot;&gt;TLDR?! - Ok, code starts here…&lt;/h3&gt;
 
 &lt;h4 id=&quot;expect&quot;&gt;Expect&lt;/h4&gt;
-&lt;p&gt;First of all, you must have expect installed in your unix. &lt;em&gt;“OH, come on, you do not know what is expect?”&lt;/em&gt;. Dude, go for it here: &lt;a href=&quot;http://www.admin-magazine.com/Articles/Automating-with-Expect-Scripts&quot;&gt;Using Expect Scripts to Automate Tasks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;First of all, you must have expect installed in your unix. &lt;em&gt;“OH, come on, you do not know what is expect?”&lt;/em&gt;. Dude, go for it here: &lt;a href=&quot;http://www.admin-magazine.com/Articles/Automating-with-Expect-Scripts&quot; target=&quot;_blank&quot;&gt;Using Expect Scripts to Automate Tasks&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;automate-ssh-access-to-your-computer-from-vagrant&quot;&gt;Automate SSH access to your computer from vagrant&lt;/h4&gt;
 &lt;p&gt;My personal computer is dumb. It does not have GitHub keys, Ruby, MySQL or any other “dev stuff”. The only tool this computer has is a vagrant box (or some boxes). There, inside my vagrant is where I’m happy. The problem is that this vagrant box does not have access to my browser, file preview and other apps that I use.&lt;/p&gt;
@@ -36,44 +48,40 @@
 
 &lt;p&gt;If you want to have an executable file, you should start it with a header that gives it some information about how it should be executed.&lt;/p&gt;
 
-&lt;p&gt;```bash
-#!/usr/bin/expect -f
-# Use: browser_search.sh &lt;query-to-be-searched&gt;&lt;/query-to-be-searched&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/expect -f&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Use: browser_search.sh &amp;lt;query-to-be-searched&amp;gt;&lt;/span&gt;
 
-&lt;p&gt;set QUERY [lindex $argv 0]
-```&lt;/p&gt;
+&lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;QUERY &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;lindex &lt;span class=&quot;nv&quot;&gt;$argv&lt;/span&gt; 0&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Now that I have the query I want to search as my argument, and matrix know it should use expect -f, it is time to ssh back into my main computer:
-&lt;code&gt;bash
-spawn ssh username@hostname
-expect &quot;Password: &quot;
-send &quot;your-password\r&quot;
-expect &quot;$ &quot;
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Now that I have the query I want to search as my argument, and matrix know it should use expect -f, it is time to ssh back into my main computer:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;spawn ssh username@hostname
+expect &lt;span class=&quot;s2&quot;&gt;&amp;quot;Password: &amp;quot;&lt;/span&gt;
+send &lt;span class=&quot;s2&quot;&gt;&amp;quot;your-password\r&amp;quot;&lt;/span&gt;
+expect &lt;span class=&quot;s2&quot;&gt;&amp;quot;$ &amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Look how amazing &lt;em&gt;expect&lt;/em&gt; is!&lt;/p&gt;
 
-&lt;p&gt;Ok, now that I’m on my main computer (a MacOS) it is a matter of open my default browser and access Google:
-&lt;code&gt;bash
-send &quot;open https://www.google.com/#q=${QUERY}\r&quot;
-expect &quot;$ &quot;
-send &quot;exit\r&quot;
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;[H[Jspawn ssh fellipebrito@192.168.0.2
+Last login: Mon Dec 28 21:07:10 2015 from 192.168.0.2
+Fellipes-MacBook-Air:~ fellipebrito$ open https://www.google.com/#q={:target=_blank}
+Fellipes-MacBook-Air:~ fellipebrito$&lt;/p&gt;
 
-&lt;p&gt;The whole script is on this &lt;a href=&quot;https://gist.github.com/fellipebrito/e35f976c3d952d6f4714&quot;&gt;gist&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;send &lt;span class=&quot;s2&quot;&gt;&amp;quot;open https://www.google.com/#q=${QUERY}\r&amp;quot;&lt;/span&gt;
+expect &lt;span class=&quot;s2&quot;&gt;&amp;quot;$ &amp;quot;&lt;/span&gt;
+send &lt;span class=&quot;s2&quot;&gt;&amp;quot;exit\r&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;You can copy/download/modify it and then move into your /bin/&lt;file_name&gt;.sh directory. Do not forget to give it 755 permission so it looks like that:
-```bash
--rwxr-xr-x 1 root 259 Mar 18 19:21 /bin/browser_search.sh*
-```&lt;/file_name&gt;&lt;/p&gt;
+&lt;p&gt;The whole script is on this &lt;a href=&quot;https://gist.github.com/fellipebrito/e35f976c3d952d6f4714&quot; target=&quot;_blank&quot;&gt;gist&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You can copy/download/modify it and then move into your /bin/&lt;file_name&gt;.sh directory. Do not forget to give it 755 permission so it looks like that:&lt;/file_name&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;-rwxr-xr-x &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; root &lt;span class=&quot;m&quot;&gt;259&lt;/span&gt; Mar &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 19:21 /bin/browser_search.sh*&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;vim-alias---how-to-copy-yanked-lines-in-vims-command-line&quot;&gt;Vim alias - how to copy yanked lines in VIM’s command line&lt;/h4&gt;
 
 &lt;p&gt;Now that I have this script I have one more challenge, I want to yank a text and with two or three keystrokes send it to the terminal?&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;
-map &amp;lt;Leader&amp;gt;bs :!browser_search.sh &amp;lt;C-r&amp;gt;&quot;&amp;lt;CR&amp;gt;
-&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;map &amp;lt;Leader&amp;gt;bs :!browser_search.sh &amp;lt;C-r&amp;gt;&lt;span class=&quot;err&quot;&gt;&amp;quot;&lt;/span&gt;&amp;lt;CR&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Here the &lt;code&gt;map &amp;lt;Leader&amp;gt;bs &lt;/code&gt; is defining my keystroke.&lt;/p&gt;
 
@@ -85,9 +93,9 @@ map &amp;lt;Leader&amp;gt;bs :!browser_search.sh &amp;lt;C-r&amp;gt;&quot;&amp;l
 
 &lt;p&gt;&lt;a href=&quot;http://gifyu.com/images/dynamic-browser-search.gif&quot;&gt;&lt;img src=&quot;http://gifyu.com/images/dynamic-browser-search.gif&quot; alt=&quot;ScreenShot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Thu, 19 Mar 2015 15:00:00 +0000</pubDate>
-        <link>http://in-todays-story.com/vim/search/bash/vagrant/2015/03/19/dynamic-browser-search/</link>
-        <guid isPermaLink="true">http://in-todays-story.com/vim/search/bash/vagrant/2015/03/19/dynamic-browser-search/</guid>
+        <pubDate>Thu, 19 Mar 2015 00:00:00 +0000</pubDate>
+        <link>/dynamic-browser-search</link>
+        <guid isPermaLink="true">/dynamic-browser-search</guid>
         
         
         <category>vim</category>
@@ -130,8 +138,8 @@ ctrl + w =
 &lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 11 Mar 2015 16:00:00 +0000</pubDate>
-        <link>http://in-todays-story.com/vim/2015/03/11/resizing-splits/</link>
-        <guid isPermaLink="true">http://in-todays-story.com/vim/2015/03/11/resizing-splits/</guid>
+        <link>/vim/2015/03/11/resizing-splits/</link>
+        <guid isPermaLink="true">/vim/2015/03/11/resizing-splits/</guid>
         
         
         <category>vim</category>
@@ -151,8 +159,8 @@ ctrl + w =
 nohup lein ring server-headless 8080 &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;&lt;/p&gt;
 </description>
         <pubDate>Wed, 11 Mar 2015 15:30:00 +0000</pubDate>
-        <link>http://in-todays-story.com/shell/clojure/2015/03/11/lein-ring-server-running-in-the-background/</link>
-        <guid isPermaLink="true">http://in-todays-story.com/shell/clojure/2015/03/11/lein-ring-server-running-in-the-background/</guid>
+        <link>/shell/clojure/2015/03/11/lein-ring-server-running-in-the-background/</link>
+        <guid isPermaLink="true">/shell/clojure/2015/03/11/lein-ring-server-running-in-the-background/</guid>
         
         
         <category>shell</category>
@@ -237,8 +245,8 @@ end
 &lt;p&gt;Done!&lt;/p&gt;
 </description>
         <pubDate>Tue, 10 Mar 2015 20:00:00 +0000</pubDate>
-        <link>http://in-todays-story.com/javascript/sinatra/ruby/clojure/ring/ajax/2015/03/10/cross-origin-resource-sharing/</link>
-        <guid isPermaLink="true">http://in-todays-story.com/javascript/sinatra/ruby/clojure/ring/ajax/2015/03/10/cross-origin-resource-sharing/</guid>
+        <link>/javascript/sinatra/ruby/clojure/ring/ajax/2015/03/10/cross-origin-resource-sharing/</link>
+        <guid isPermaLink="true">/javascript/sinatra/ruby/clojure/ring/ajax/2015/03/10/cross-origin-resource-sharing/</guid>
         
         
         <category>javascript</category>
@@ -270,102 +278,11 @@ end
 &lt;pre class=&quot;lang:default decode:true&quot;&gt;find -name &quot;*.flac&quot; -size -12000k -delete&lt;/pre&gt;
 </description>
         <pubDate>Mon, 15 Sep 2014 00:00:00 +0000</pubDate>
-        <link>http://in-todays-story.com/2014/09/how-to-list-all-files-largersmaller-than-certain-size/</link>
-        <guid isPermaLink="true">http://in-todays-story.com/2014/09/how-to-list-all-files-largersmaller-than-certain-size/</guid>
+        <link>/2014/09/how-to-list-all-files-largersmaller-than-certain-size/</link>
+        <guid isPermaLink="true">/2014/09/how-to-list-all-files-largersmaller-than-certain-size/</guid>
         
         
         <category>uncategorized</category>
-        
-      </item>
-    
-      <item>
-        <title>Sample post from harmony</title>
-        <description>&lt;p&gt;Just a sample post to show some of the &lt;em&gt;typography&lt;/em&gt; elements supported from 
-&lt;strong&gt;harmony&lt;/strong&gt; theme.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;A blockquote:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Donec in mollis eros, nec rutrum turpis. &lt;strong&gt;Curabitur&lt;/strong&gt; sem elit, semper nec volutpat quis, laoreet et sapien. In felis erat, rhoncus sed pellentesque mollis, tincidunt quis elit.
-- By Someone&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;header-2&quot;&gt;Header 2&lt;/h2&gt;
-
-&lt;p&gt;Duis lacinia commodo dui, vel aliquam metus hendrerit eu. Integer et scelerisque dui. Sed nec molestie quam. Donec sit amet nisl a massa commodo ultrices nec quis nunc. Aenean aliquet eu arcu adipiscing dignissim. Nunc dictum elit vitae dolor molestie aliquet.&lt;/p&gt;
-
-&lt;p&gt;Example code:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Tom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;A list:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Praesent nisi elit, bibendum ut consectetur ac, aliquet in nunc&lt;/li&gt;
-  &lt;li&gt;Donec ante est, volutpat in mi et, pulvinar congue dolor.&lt;/li&gt;
-  &lt;li&gt;Quisque ultrices pulvinar sollicitudin.&lt;/li&gt;
-  &lt;li&gt;Duis elementum odio eu euismod suscipit.&lt;/li&gt;
-  &lt;li&gt;Integer enim lorem, interdum sit amet consectetur non, bibendum eget neque.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;A numbered list:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Praesent nisi elit, bibendum ut consectetur ac, aliquet in nunc.&lt;/li&gt;
-  &lt;li&gt;Donec ante est, volutpat in mi et, pulvinar congue dolor.&lt;/li&gt;
-  &lt;li&gt;Quisque ultrices pulvinar sollicitudin.&lt;/li&gt;
-  &lt;li&gt;Duis elementum odio eu euismod suscipit.&lt;/li&gt;
-  &lt;li&gt;Integer enim lorem, interdum sit amet consectetur non, bibendum eget neque.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Definition list:&lt;/p&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;Curabitur cursus magna eu sem cursus&lt;/dt&gt;
-  &lt;dd&gt;ac ultrices urna pharetra.&lt;/dd&gt;
-  &lt;dd&gt;Duis scelerisque ipsum eu luctus elementum.&lt;/dd&gt;
-  &lt;dt&gt;Pellentesque habitant morbi tristique senectus&lt;/dt&gt;
-  &lt;dd&gt;Curabitur malesuada lacus ac gravida porttitor&lt;/dd&gt;
-  &lt;dd&gt;Duis sodales feugiat lorem et mollis.&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;Want me to suggest something? Please &lt;a href=&quot;https://github.com/web-create/harmony/issues/new&quot;&gt;Send me a request&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Tue, 19 Aug 2014 23:56:45 +0000</pubDate>
-        <link>http://in-todays-story.com/sample-post</link>
-        <guid isPermaLink="true">http://in-todays-story.com/sample-post</guid>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>What is Jekyll!</title>
-        <description>&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. Here is a little quote from the official website:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;It takes a template directory containing raw text files in various formats, runs it through &lt;a href=&quot;http://daringfireball.net/projects/markdown/&quot;&gt;Markdown&lt;/a&gt; (or &lt;a href=&quot;http://redcloth.org/textile&quot;&gt;Textile&lt;/a&gt;) and Liquid converters, and spits out a complete, ready-to-publish static website suitable for serving with your favorite web server. Jekyll also happens to be the engine behind &lt;a href=&quot;http://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;, which means you can use Jekyll to host your project’s page, blog, or website from GitHub’s servers for free.
-- jekyllrb.com&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;.&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 28 Jul 2014 22:48:45 +0000</pubDate>
-        <link>http://in-todays-story.com/blog/jekyll/2014/07/28/welcome-to-jekyll/</link>
-        <guid isPermaLink="true">http://in-todays-story.com/blog/jekyll/2014/07/28/welcome-to-jekyll/</guid>
-        
-        
-        <category>blog</category>
-        
-        <category>jekyll</category>
         
       </item>
     
@@ -380,8 +297,8 @@ end
 &lt;pre class=&quot;lang:default decode:true&quot;&gt;git branch -r&lt;/pre&gt;
 </description>
         <pubDate>Tue, 06 May 2014 00:00:00 +0000</pubDate>
-        <link>http://in-todays-story.com/2014/05/how-to-update-my-remote-branch-information/</link>
-        <guid isPermaLink="true">http://in-todays-story.com/2014/05/how-to-update-my-remote-branch-information/</guid>
+        <link>/2014/05/how-to-update-my-remote-branch-information/</link>
+        <guid isPermaLink="true">/2014/05/how-to-update-my-remote-branch-information/</guid>
         
         
         <category>uncategorized</category>
@@ -404,8 +321,8 @@ gem install capybara-webkit -v &#39;1.1.0&#39;&lt;/pre&gt;
 &lt;p&gt;You’re welcome.&lt;/p&gt;
 </description>
         <pubDate>Wed, 19 Mar 2014 00:00:00 +0000</pubDate>
-        <link>http://in-todays-story.com/2014/03/fatal-error-while-bundling-capybara-webkit/</link>
-        <guid isPermaLink="true">http://in-todays-story.com/2014/03/fatal-error-while-bundling-capybara-webkit/</guid>
+        <link>/2014/03/fatal-error-while-bundling-capybara-webkit/</link>
+        <guid isPermaLink="true">/2014/03/fatal-error-while-bundling-capybara-webkit/</guid>
         
         
         <category>capybara</category>
@@ -429,8 +346,8 @@ gem install capybara-webkit -v &#39;1.1.0&#39;&lt;/pre&gt;
 &lt;pre class=&quot;lang:default decode:true&quot; title=&quot;bashrc&quot;&gt;export EDITOR=&#39;vim&#39;&lt;/pre&gt;
 </description>
         <pubDate>Sun, 23 Feb 2014 00:00:00 +0000</pubDate>
-        <link>http://in-todays-story.com/2014/02/how-to-set-your-unix-default-editor/</link>
-        <guid isPermaLink="true">http://in-todays-story.com/2014/02/how-to-set-your-unix-default-editor/</guid>
+        <link>/2014/02/how-to-set-your-unix-default-editor/</link>
+        <guid isPermaLink="true">/2014/02/how-to-set-your-unix-default-editor/</guid>
         
         
         <category>alias</category>
@@ -440,6 +357,142 @@ gem install capybara-webkit -v &#39;1.1.0&#39;&lt;/pre&gt;
         <category>ubuntu</category>
         
         <category>unix</category>
+        
+      </item>
+    
+      <item>
+        <title>Be more productive with TMUXINATOR</title>
+        <description>&lt;p&gt;&lt;img alt=&quot;&quot; src=&quot;https://f.cloud.github.com/assets/141213/916084/065fef7c-fe82-11e2-9c23-a9622c7d83c3.png&quot; width=&quot;2560&quot; height=&quot;1440&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/tmuxinator/tmuxinator&quot; target=&quot;_blank&quot;&gt;TMUXINATOR&lt;/a&gt; is a &lt;a href=&quot;http://en.wikipedia.org/wiki/Tmux&quot; target=&quot;_blank&quot;&gt;TMUX&lt;/a&gt; session manager; &lt;a href=&quot;http://en.wikipedia.org/wiki/Tmux&quot; target=&quot;_blank&quot;&gt;TMUX&lt;/a&gt; is a software that lets you switch easily between several programs in one terminal, detach them (they keep running in the background) and reattach them to a different terminal. And do a lot more. See &lt;a href=&quot;http://www.openbsd.org/cgi-bin/man.cgi?query=tmux&amp;amp;sektion=1&quot; target=&quot;_blank&quot;&gt;the manual&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Requirements:&lt;br /&gt;
+- &lt;a href=&quot;http://code.fellipebrito.com/2014/02/how-to-set-your-unix-default-editor/&quot; target=&quot;_blank&quot;&gt;Define your bash $EDITOR&lt;/a&gt;;&lt;br /&gt;
+- &lt;a href=&quot;http://rvm.io/rvm/install&quot; target=&quot;_blank&quot;&gt;Ruby installed&lt;/a&gt;&lt;br /&gt;
+- TMUX 1.8+ installed, if you have any troubled installing this version in your Ubuntu &lt;a href=&quot;http://askubuntu.com/a/324949&quot; target=&quot;_blank&quot;&gt;you can follow these tips&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/tmuxinator/tmuxinator&quot; target=&quot;_blank&quot;&gt;TMUXINATOR&lt;/a&gt; is a rubygem, to install it is easy:&lt;/p&gt;
+
+&lt;pre title=&quot;TMUXINATOR gem install&quot;&gt;gem install tmuxinator&lt;/pre&gt;
+
+&lt;p&gt;After you install it you can start a new project using:&lt;/p&gt;
+
+&lt;pre&gt;tmuxinator open my_project&lt;/pre&gt;
+
+&lt;p&gt;This command will open a YAML file inside your default editor (that I wish to be VIM):&lt;/p&gt;
+
+&lt;pre title=&quot;TMUXINATOR config file&quot;&gt;# ~/.tmuxinator/my_project.yml
+
+name: my_project
+root: ~/
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+windows:
+  - editor:
+      layout: main-vertical
+      panes:
+        - vim
+        - rspec
+  - server: bundle exec rails s
+  - logs: tail -f logs/development.log&lt;/pre&gt;
+
+&lt;p&gt;If you only read this file you will be amazed with all the possibilities it gives to you. This basic config file is really useful if you work with a Rails project. It gives to you three windows ( rspec and editor, server and log reader ) ready to dive in code.&lt;span style=&quot;line-height: 1.5;&quot;&gt;&lt;br /&gt; &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, with this file saved you can start your day typing:&lt;/p&gt;
+
+&lt;pre title=&quot;Starting TMUX&quot;&gt;mux start meu_projeto&lt;/pre&gt;
+
+&lt;p&gt;That’s it, your whole dev environment is active and ready to rumble. You can configure it as you wish: you need a ssh connection, new editors, a database window, top, capistrano? You can do it and much more, explore its manual and you will see how powerful it is.&lt;/p&gt;
+
+&lt;p&gt;You can also share its .conf with your team and avoid those 15 minutes every developer loses to start to code in the morning.&lt;/p&gt;
+
+&lt;p&gt;Now let’s do a simple math. Saving 15 minutes everyday * 20 days you &lt;strong&gt;save 5 hours of work per month per developer&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now multiply this “save time” * your dev team (8 devs?!?). You are saving A WEEK of time and money with this simple config file.&lt;/p&gt;
+
+&lt;p&gt;Cheers to productivity and money saved!&lt;/p&gt;
+</description>
+        <pubDate>Sun, 23 Feb 2014 00:00:00 +0000</pubDate>
+        <link>/2014/02/be-more-productive-with-tmuxinator/</link>
+        <guid isPermaLink="true">/2014/02/be-more-productive-with-tmuxinator/</guid>
+        
+        
+        <category>alias</category>
+        
+        <category>ruby</category>
+        
+        <category>terminal</category>
+        
+        <category>tmux</category>
+        
+        <category>tmuxinator</category>
+        
+        <category>ubuntu</category>
+        
+        <category>unix</category>
+        
+      </item>
+    
+      <item>
+        <title>Saving time and avoiding keystrokes</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://code.fellipebrito.com/wp-content/uploads/2014/02/77_83_ddd.gif&quot;&gt;&lt;img class=&quot;size-full wp-image-60 aligncenter&quot; alt=&quot;77_83_ddd&quot; src=&quot;http://code.fellipebrito.com/wp-content/uploads/2014/02/77_83_ddd.gif&quot; width=&quot;278&quot; height=&quot;283&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Our brains are incredibly fast, as well as our computers. We should not decrease this speed, with our slow fingers or too many keystrokes. &lt;strong&gt;It is important to avoid unnecessary typing. &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;One way to do that is &lt;strong&gt;creating some aliases&lt;/strong&gt; on shell, which improves our speed but also avoids some good amount of keystrokes,  saving your health in the long term.&lt;/p&gt;
+
+&lt;p&gt;Please, do some simple math with me: if you type &lt;em&gt;‘git status’&lt;/em&gt; 20 times a day, it is 100 times per week, 400 times per month and ~5000 times per year.&lt;br /&gt;
+In a professional life time, you’d type  these 10 keystrokes, &amp;gt; 100.000 times,  which gives us an incredible mark of &lt;strong&gt;1 MILLION key strokes just to know what has changed in our code&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;I use &lt;em&gt;‘gst’&lt;/em&gt; as an alias. It &lt;strong&gt;saves me 7 key strokes per time&lt;/strong&gt;, which is &amp;gt; 60% of the total keystrokes. We can say that I will save more than &lt;strong&gt;500.000 key strokes in my dev lifetime&lt;/strong&gt; (20 years?!?).  And it is only one of my aliases.&lt;/p&gt;
+
+&lt;p&gt;So you can ask me to share  my aliases with you, and I’d gladly do that, actually, take a look on my dotfiles here (&lt;a href=&quot;https://github.com/fellipebrito/dotfiles&quot; target=&quot;_blank&quot;&gt;https://github.com/fellipebrito/dotfiles&lt;/a&gt;) however keep in mind that they are my customized alias, of course you can use that, but it would be better to know which commands you use often, wouldn’t it?&lt;/p&gt;
+
+&lt;p&gt;In order to help you (and help me) I am always watching screencasts and trying to capture new stuff that good developers are doing out there (You also might go to github, read  a bunch of public repositories, it is a great way to learn a lot with those guys), so &lt;a href=&quot;http://codeulate.com/&quot; target=&quot;_blank&quot;&gt;Ben Orenstein&lt;/a&gt; came up with this idea in his &lt;a href=&quot;http://goruco.com/&quot; target=&quot;_blank&quot;&gt;GoRuCo&lt;/a&gt; conference (and he also confirms he did not create that, but grabbed it from internet). (&lt;em&gt;if you are humble and smart enough you will see that you can learn a lot with the content that is already out there and  you can accept that at least 70% of what you code was inspired or copied from something else.&lt;/em&gt;)&lt;/p&gt;
+
+&lt;p&gt;Well, less talk more code. If you want to know which aliases you should create, in order to know which are your top 20 most recurrent commands on the terminal, just use this command:&lt;/p&gt;
+
+&lt;pre class=&quot;lang:sh decode:true&quot; title=&quot;Example of 20 top commands&quot;&gt;$ history | awk &#39;{a[$2]++}END{for(i in a){print a[i] &quot; &quot; i}}&#39; | sort -rn | head -20
+100 ls
+55 cd
+49 git
+43 vim
+28 vagrant
+19 vup
+17 cat
+13 source
+13 fg
+13 exit
+12 pwd
+12 open
+10 rm
+8 l
+7 which
+7 brew
+6 sudo
+6 mkdir
+5 reset
+5 ping&lt;/pre&gt;
+
+</description>
+        <pubDate>Tue, 11 Feb 2014 00:00:00 +0000</pubDate>
+        <link>/2014/02/saving-time-and-avoiding-keystrokes/</link>
+        <guid isPermaLink="true">/2014/02/saving-time-and-avoiding-keystrokes/</guid>
+        
+        <category>alias</category>
+        
+        <category>health</category>
+        
+        <category>saude</category>
+        
+        <category>terminal</category>
+        
+        
+        <category>alias</category>
+        
+        <category>terminal</category>
         
       </item>
     
