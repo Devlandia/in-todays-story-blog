@@ -80,7 +80,7 @@ You can copy/download/modify it and then move into your /bin/<file_name>.sh dire
 
 Now that I have this script I have one more challenge, I want to yank a text and with two or three keystrokes send it to the terminal?
 
-{% highlight %}
+{% highlight bash %}
 map <Leader>bs :!browser_search.sh <C-r>"<CR>
 {% endhighlight %}
 

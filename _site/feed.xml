@@ -5,8 +5,8 @@
     <description>by Fellipe Brito about Ruby, Clojure, VIM and an Engineer&#39;s life</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 29 Dec 2015 05:10:33 +0000</pubDate>
-    <lastBuildDate>Tue, 29 Dec 2015 05:10:33 +0000</lastBuildDate>
+    <pubDate>Tue, 29 Dec 2015 05:16:56 +0000</pubDate>
+    <lastBuildDate>Tue, 29 Dec 2015 05:16:56 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -87,7 +87,7 @@ send &lt;span class=&quot;s2&quot;&gt;&amp;quot;exit\r&amp;quot;&lt;/span&gt;&lt
 
 &lt;p&gt;&lt;code&gt;:!browser_search.sh &lt;/code&gt; tells VIM that it should execute this command on the command line.&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;&amp;lt;C-r&amp;gt;&quot;&lt;/code&gt; is the command to paste the text is yanked on the command line. And finally the &lt;code&gt;&amp;lt;CR&amp;gt;&lt;/code&gt; is the &lt;enter&gt; key.&lt;/enter&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;C-r&amp;gt;&quot;&lt;/code&gt; is the command to paste the text which is yanked on the command line. And finally the &lt;code&gt;&amp;lt;CR&amp;gt;&lt;/code&gt; is the &lt;enter&gt; key.&lt;/enter&gt;&lt;/p&gt;
 
 &lt;p&gt;It works very well, and my plan in the future is to improve it so I can search not only on Google but define if I want to search directly in one specific place.&lt;/p&gt;
 
