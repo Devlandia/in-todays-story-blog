@@ -5,18 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>How to list all files larger/smaller than certain size</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
-">
+    <meta name="description" content="If you want to list all flac files smaller than 12mb or bigger than or even delete them all.">
     <link rel="canonical"
-          href="/2014/09/how-to-list-all-files-largersmaller-than-certain-size/">
+          href="/how-to-list-all-files-largersmaller-than-certain-size">
 
     <!-- Facebook Tags -->
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://s.gravatar.com/avatar/23269595e78e142199d43a01d45e8fdd?s=800" />
     <meta property="og:image:width" content="2400" />
     <meta property="og:image:height" content="1300"/>
-    <meta property="og:description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
-"/>
+    <meta property="og:description" content="If you want to list all flac files smaller than 12mb or bigger than or even delete them all."/>
     <meta property="og:title" content="How to list all files larger/smaller than certain size"/>
 
     <!-- Harmony styles -->
@@ -55,7 +53,7 @@
     <p class="post-meta">
     
     <span class="categories">
-      uncategorized
+      bash and ubuntu
     </span> |
     
     <span class="post-date">
@@ -65,15 +63,16 @@
     <div class="post">
       <p>If you want to list all flac files smaller than 12mb:</p>
 
-<pre class="lang:default decode:true">find -name "*.flac" -size -12000k</pre>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">find -name <span class="s2">&quot;*.flac&quot;</span> -size -12000k</code></pre></div>
 
 <p>If you want to list files bigger than, just change the <strong>- </strong>for a <strong>+</strong></p>
 
-<pre class="lang:default decode:true">find -name "*.flac" -size +12000k</pre>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">find -name <span class="s2">&quot;*.flac&quot;</span> -size +12000k</code></pre></div>
 
 <p>Now if you want to delete them, just add a -delete after that:</p>
 
-<pre class="lang:default decode:true">find -name "*.flac" -size -12000k -delete</pre>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">find -name <span class="s2">&quot;*.flac&quot;</span> -size -12000k -delete</code></pre></div>
+
 
     </div>
   </div>
