@@ -5,8 +5,8 @@
     <description>by Fellipe Brito about Ruby, Clojure, VIM and an Engineer&#39;s life</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 29 Dec 2015 09:42:00 +0000</pubDate>
-    <lastBuildDate>Tue, 29 Dec 2015 09:42:00 +0000</lastBuildDate>
+    <pubDate>Tue, 29 Dec 2015 09:47:35 +0000</pubDate>
+    <lastBuildDate>Tue, 29 Dec 2015 09:47:35 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -168,9 +168,7 @@ send &lt;span class=&quot;s2&quot;&gt;&amp;quot;exit\r&amp;quot;&lt;/span&gt;&lt
     
       <item>
         <title>Cross Origin Resource Sharing in Sinatra (ruby) and Ring (clojure) - CORS</title>
-        <description>&lt;p&gt;&lt;em&gt;by &lt;a href=&quot;https://github.com/fellipebrito&quot;&gt;@fellipebrito&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Few weeks ago I started thinking about the idea of bigger layers of separation between the frontend and the backend. In my perfect world, I would create a project that would rely 100% of its dynamic content in an API that would have only one goal: &lt;strong&gt;talk to the database and return a JSON&lt;/strong&gt;.&lt;/p&gt;
+        <description>&lt;p&gt;Few weeks ago I started thinking about the idea of bigger layers of separation between the frontend and the backend. In my perfect world, I would create a project that would rely 100% of its dynamic content in an API that would have only one goal: &lt;strong&gt;talk to the database and return a JSON&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;p&gt;In this perfect world, specifications would be the first thing to write. You sit down with the tech team, review the mockups, define the JSON the frontend needs, write it down and done! &lt;strong&gt;Frontend team will have its content mocked and ready to go, and backend team would have a perfect spec to return.&lt;/strong&gt;&lt;/p&gt;
 
@@ -179,7 +177,7 @@ send &lt;span class=&quot;s2&quot;&gt;&amp;quot;exit\r&amp;quot;&lt;/span&gt;&lt
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;“No ‘Access-Control-Allow-Origin’ header is present on the requested resource”.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;if you want to step out all the explanation and jump direct to the code, here is the commit that saved my life: &lt;a href=&quot;https://github.com/fellipebrito/front-back-case/commit/5dede83ab8ae5ab320fe2041160c07e18e7f4b7e&quot;&gt;Enables cross origin access&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;if you want to step out all the explanation and jump direct to the code, here is the commit that saved my life: &lt;a href=&quot;https://github.com/fellipebrito/front-back-case/commit/5dede83ab8ae5ab320fe2041160c07e18e7f4b7e&quot; target=&quot;_blank&quot;&gt;Enables cross origin access&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;The error above is the one I found on my chrome web development tool, and then after few clicks here and there, CORS came up to me.&lt;/p&gt;
@@ -189,61 +187,57 @@ Regular web pages can use the XMLHttpRequest object to send and receive data fro
 
 &lt;p&gt;&lt;strong&gt;So here is my problem:&lt;/strong&gt; I have two different sources, and I want them to talk through a SPA.&lt;/p&gt;
 
-&lt;p&gt;Thankfully both Sinatra and Ring (for Clojure) offer us a solution for that: &lt;a href=&quot;https://github.com/britg/sinatra-cross_origin&quot;&gt;Sinatra cross-origin&lt;/a&gt; - a Cross Origin Request Sharing extension for Sinatra and &lt;a href=&quot;https://github.com/r0man/ring-cors&quot;&gt;Ring middleware for Cross-Origin Resource Sharing&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Thankfully both Sinatra and Ring (for Clojure) offer us a solution for that: &lt;a href=&quot;https://github.com/britg/sinatra-cross_origin&quot; target=&quot;_blank&quot;&gt;Sinatra cross-origin&lt;/a&gt; - a Cross Origin Request Sharing extension for Sinatra and &lt;a href=&quot;https://github.com/r0man/ring-cors&quot; target=&quot;_blank&quot;&gt;Ring middleware for Cross-Origin Resource Sharing&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;sinatra&quot;&gt;Sinatra&lt;/h3&gt;
 &lt;p&gt;Three steps:&lt;/p&gt;
 
-&lt;p&gt;1) add the gem to your Gemfile
-&lt;code&gt;ruby
-&#39;sinatra-cross_origin&#39;
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;1) add the gem to your Gemfile&lt;/p&gt;
 
-&lt;p&gt;2) require it in your app
-&lt;code&gt;ruby
-require &quot;sinatra/cross_origin&quot;
-&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;sinatra-cross_origin&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;3) enable it inside your app
-&lt;code&gt;ruby
-register Sinatra::CrossOrigin
-configure do
-      enable :cross_origin
-end
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;2) require it in your app&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;sinatra/cross_origin&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;3) enable it inside your app&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;register&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Sinatra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;CrossOrigin&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;configure&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;enable&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:cross_origin&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;ringclojure&quot;&gt;Ring/Clojure&lt;/h3&gt;
 &lt;p&gt;Three steps:&lt;/p&gt;
 
-&lt;p&gt;1) Add the dependence in project.clj
-&lt;code&gt;clojure
-[ring-cors &quot;0.1.6&quot;]
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;1) Add the dependence in project.clj&lt;/p&gt;
 
-&lt;p&gt;2) require it in the handler
-&lt;code&gt;clojure
-[ring.middleware.cors :refer [wrap-cors]]
-&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clojure&quot; data-lang=&quot;clojure&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ring-cors&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;0.1.6&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;3) wrap the routes with it
-```clojure
-;; from:
-(def app
-  (wrap-defaults app-routes site-defaults))&lt;/p&gt;
+&lt;p&gt;2) require it in the handler&lt;/p&gt;
 
-&lt;p&gt;;; to:
-(def app 
-  (-&amp;gt; (wrap-defaults app-routes site-defaults)
-      (wrap-cors :access-control-allow-origin #”http://localhost:3000”
-                 :access-control-allow-methods [:get :put :post]
-                 :access-control-allow-headers [“Content-Type”])))
-```&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clojure&quot; data-lang=&quot;clojure&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ring.middleware.cors&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:refer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;wrap-cors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;3) wrap the routes with it&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-clojure&quot; data-lang=&quot;clojure&quot;&gt;&lt;span class=&quot;c1&quot;&gt;;; from:&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;app&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;wrap-defaults&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;app-routes&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;site-defaults&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;;; to:&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;app&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;-&amp;gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;wrap-defaults&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;app-routes&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;site-defaults&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;wrap-cors&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:access-control-allow-origin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://localhost:3000&amp;quot;&lt;/span&gt;
+                 &lt;span class=&quot;ss&quot;&gt;:access-control-allow-methods&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:get&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:put&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+                 &lt;span class=&quot;ss&quot;&gt;:access-control-allow-headers&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Content-Type&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Done!&lt;/p&gt;
 </description>
-        <pubDate>Tue, 10 Mar 2015 20:00:00 +0000</pubDate>
-        <link>/javascript/sinatra/ruby/clojure/ring/ajax/2015/03/10/cross-origin-resource-sharing/</link>
-        <guid isPermaLink="true">/javascript/sinatra/ruby/clojure/ring/ajax/2015/03/10/cross-origin-resource-sharing/</guid>
+        <pubDate>Tue, 10 Mar 2015 00:00:00 +0000</pubDate>
+        <link>/cross-origin-resource-sharing</link>
+        <guid isPermaLink="true">/cross-origin-resource-sharing</guid>
         
         
         <category>javascript</category>

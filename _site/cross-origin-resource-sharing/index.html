@@ -5,18 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Cross Origin Resource Sharing in Sinatra (ruby) and Ring (clojure) - CORS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
-">
+    <meta name="description" content="Regular web pages can use the XMLHttpRequest object to send and receive data from remote servers, but they're limited by the same origin policy.">
     <link rel="canonical"
-          href="/javascript/sinatra/ruby/clojure/ring/ajax/2015/03/10/cross-origin-resource-sharing/">
+          href="/cross-origin-resource-sharing">
 
     <!-- Facebook Tags -->
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://s.gravatar.com/avatar/23269595e78e142199d43a01d45e8fdd?s=800" />
     <meta property="og:image:width" content="2400" />
     <meta property="og:image:height" content="1300"/>
-    <meta property="og:description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
-"/>
+    <meta property="og:description" content="Regular web pages can use the XMLHttpRequest object to send and receive data from remote servers, but they're limited by the same origin policy."/>
     <meta property="og:title" content="Cross Origin Resource Sharing in Sinatra (ruby) and Ring (clojure) - CORS"/>
 
     <!-- Harmony styles -->
@@ -63,9 +61,7 @@
     </span>
     </p>
     <div class="post">
-      <p><em>by <a href="https://github.com/fellipebrito">@fellipebrito</a></em></p>
-
-<p>Few weeks ago I started thinking about the idea of bigger layers of separation between the frontend and the backend. In my perfect world, I would create a project that would rely 100% of its dynamic content in an API that would have only one goal: <strong>talk to the database and return a JSON</strong>.</p>
+      <p>Few weeks ago I started thinking about the idea of bigger layers of separation between the frontend and the backend. In my perfect world, I would create a project that would rely 100% of its dynamic content in an API that would have only one goal: <strong>talk to the database and return a JSON</strong>.</p>
 
 <p>In this perfect world, specifications would be the first thing to write. You sit down with the tech team, review the mockups, define the JSON the frontend needs, write it down and done! <strong>Frontend team will have its content mocked and ready to go, and backend team would have a perfect spec to return.</strong></p>
 
@@ -74,7 +70,7 @@
 <p><strong><em>“No ‘Access-Control-Allow-Origin’ header is present on the requested resource”.</em></strong></p>
 
 <blockquote>
-  <p>if you want to step out all the explanation and jump direct to the code, here is the commit that saved my life: <a href="https://github.com/fellipebrito/front-back-case/commit/5dede83ab8ae5ab320fe2041160c07e18e7f4b7e">Enables cross origin access</a></p>
+  <p>if you want to step out all the explanation and jump direct to the code, here is the commit that saved my life: <a href="https://github.com/fellipebrito/front-back-case/commit/5dede83ab8ae5ab320fe2041160c07e18e7f4b7e" target="_blank">Enables cross origin access</a></p>
 </blockquote>
 
 <p>The error above is the one I found on my chrome web development tool, and then after few clicks here and there, CORS came up to me.</p>
@@ -84,55 +80,51 @@ Regular web pages can use the XMLHttpRequest object to send and receive data fro
 
 <p><strong>So here is my problem:</strong> I have two different sources, and I want them to talk through a SPA.</p>
 
-<p>Thankfully both Sinatra and Ring (for Clojure) offer us a solution for that: <a href="https://github.com/britg/sinatra-cross_origin">Sinatra cross-origin</a> - a Cross Origin Request Sharing extension for Sinatra and <a href="https://github.com/r0man/ring-cors">Ring middleware for Cross-Origin Resource Sharing</a></p>
+<p>Thankfully both Sinatra and Ring (for Clojure) offer us a solution for that: <a href="https://github.com/britg/sinatra-cross_origin" target="_blank">Sinatra cross-origin</a> - a Cross Origin Request Sharing extension for Sinatra and <a href="https://github.com/r0man/ring-cors" target="_blank">Ring middleware for Cross-Origin Resource Sharing</a></p>
 
 <h3 id="sinatra">Sinatra</h3>
 <p>Three steps:</p>
 
-<p>1) add the gem to your Gemfile
-<code>ruby
-'sinatra-cross_origin'
-</code></p>
+<p>1) add the gem to your Gemfile</p>
 
-<p>2) require it in your app
-<code>ruby
-require "sinatra/cross_origin"
-</code></p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="s1">&#39;sinatra-cross_origin&#39;</span></code></pre></div>
 
-<p>3) enable it inside your app
-<code>ruby
-register Sinatra::CrossOrigin
-configure do
-      enable :cross_origin
-end
-</code></p>
+<p>2) require it in your app</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&quot;sinatra/cross_origin&quot;</span></code></pre></div>
+
+<p>3) enable it inside your app</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">register</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">CrossOrigin</span>
+
+<span class="n">configure</span> <span class="k">do</span>
+  <span class="n">enable</span> <span class="ss">:cross_origin</span>
+<span class="k">end</span></code></pre></div>
 
 <h3 id="ringclojure">Ring/Clojure</h3>
 <p>Three steps:</p>
 
-<p>1) Add the dependence in project.clj
-<code>clojure
-[ring-cors "0.1.6"]
-</code></p>
+<p>1) Add the dependence in project.clj</p>
 
-<p>2) require it in the handler
-<code>clojure
-[ring.middleware.cors :refer [wrap-cors]]
-</code></p>
+<div class="highlight"><pre><code class="language-clojure" data-lang="clojure"><span class="p">[</span><span class="nv">ring-cors</span> <span class="s">&quot;0.1.6&quot;</span><span class="p">]</span></code></pre></div>
 
-<p>3) wrap the routes with it
-```clojure
-;; from:
-(def app
-  (wrap-defaults app-routes site-defaults))</p>
+<p>2) require it in the handler</p>
 
-<p>;; to:
-(def app 
-  (-&gt; (wrap-defaults app-routes site-defaults)
-      (wrap-cors :access-control-allow-origin #”http://localhost:3000”
-                 :access-control-allow-methods [:get :put :post]
-                 :access-control-allow-headers [“Content-Type”])))
-```</p>
+<div class="highlight"><pre><code class="language-clojure" data-lang="clojure"><span class="p">[</span><span class="nv">ring.middleware.cors</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">wrap-cors</span><span class="p">]]</span></code></pre></div>
+
+<p>3) wrap the routes with it</p>
+
+<div class="highlight"><pre><code class="language-clojure" data-lang="clojure"><span class="c1">;; from:</span>
+<span class="p">(</span><span class="k">def </span><span class="nv">app</span>
+  <span class="p">(</span><span class="nf">wrap-defaults</span> <span class="nv">app-routes</span> <span class="nv">site-defaults</span><span class="p">))</span>
+
+
+<span class="c1">;; to:</span>
+<span class="p">(</span><span class="k">def </span><span class="nv">app</span> 
+  <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">wrap-defaults</span> <span class="nv">app-routes</span> <span class="nv">site-defaults</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">wrap-cors</span> <span class="ss">:access-control-allow-origin</span> <span class="o">#</span><span class="s">&quot;http://localhost:3000&quot;</span>
+                 <span class="ss">:access-control-allow-methods</span> <span class="p">[</span><span class="ss">:get</span> <span class="ss">:put</span> <span class="ss">:post</span><span class="p">]</span>
+                 <span class="ss">:access-control-allow-headers</span> <span class="p">[</span><span class="s">&quot;Content-Type&quot;</span><span class="p">])))</span></code></pre></div>
 
 <p>Done!</p>
 
