@@ -5,12 +5,12 @@
     <description>by Fellipe Brito about Ruby, Clojure, VIM and an Engineer&#39;s life</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 29 Dec 2015 05:16:56 +0000</pubDate>
-    <lastBuildDate>Tue, 29 Dec 2015 05:16:56 +0000</lastBuildDate>
+    <pubDate>Tue, 29 Dec 2015 05:18:39 +0000</pubDate>
+    <lastBuildDate>Tue, 29 Dec 2015 05:18:39 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
-        <title>Dynamic browser search from a yanked text in VIM from a vagrant box</title>
+        <title>Dynamic browser searching a yanked text in VIM from a vagrant box</title>
         <description>&lt;p&gt;I hate to use the mouse. Not only because I want to show off my abilities with the keyboard everytime a new fellow developer comes over my desk but mainly because it slows me down. I’ve invested some time in the last two years to get my hands as far away from the mouse as possible. Even more than slowing me down, the movement from keyboard to mouse and back to the keyboard can be harmful to my wrists, but it is another story.&lt;/p&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
@@ -94,8 +94,8 @@ send &lt;span class=&quot;s2&quot;&gt;&amp;quot;exit\r&amp;quot;&lt;/span&gt;&lt
 &lt;p&gt;&lt;a href=&quot;http://gifyu.com/images/dynamic-browser-search.gif&quot;&gt;&lt;img src=&quot;http://gifyu.com/images/dynamic-browser-search.gif&quot; alt=&quot;ScreenShot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 19 Mar 2015 00:00:00 +0000</pubDate>
-        <link>/dynamic-browser-search</link>
-        <guid isPermaLink="true">/dynamic-browser-search</guid>
+        <link>/dynamic-browser-searching-text-from-vim-inside-a-vagrant-box</link>
+        <guid isPermaLink="true">/dynamic-browser-searching-text-from-vim-inside-a-vagrant-box</guid>
         
         
         <category>vim</category>

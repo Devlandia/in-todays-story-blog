@@ -1,8 +1,8 @@
 ---
-title: "Dynamic browser search from a yanked text in VIM from a vagrant box"
+title: "Dynamic browser searching a yanked text in VIM from a vagrant box"
 meta_description: ""
 layout: post
-permalink: dynamic-browser-search
+permalink: dynamic-browser-searching-text-from-vim-inside-a-vagrant-box
 categories: [vim, search, bash, vagrant]
 ---
 
