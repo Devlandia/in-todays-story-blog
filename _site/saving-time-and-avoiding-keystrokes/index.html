@@ -3,21 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>How to set your unix default editor</title>
+    <title>Saving time and avoiding keystrokes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
-">
+    <meta name="description" content="Our brains are incredibly fast, as well as our computers. We should not decrease this speed, with our slow fingers or too many keystrokes. It is important to avoid unnecessary typing. One way to do that is creating some aliases">
     <link rel="canonical"
-          href="/2014/02/how-to-set-your-unix-default-editor/">
+          href="/saving-time-and-avoiding-keystrokes">
 
     <!-- Facebook Tags -->
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://s.gravatar.com/avatar/23269595e78e142199d43a01d45e8fdd?s=800" />
     <meta property="og:image:width" content="2400" />
     <meta property="og:image:height" content="1300"/>
-    <meta property="og:description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
-"/>
-    <meta property="og:title" content="How to set your unix default editor"/>
+    <meta property="og:description" content="Our brains are incredibly fast, as well as our computers. We should not decrease this speed, with our slow fingers or too many keystrokes. It is important to avoid unnecessary typing. One way to do that is creating some aliases"/>
+    <meta property="og:title" content="Saving time and avoiding keystrokes"/>
 
     <!-- Harmony styles -->
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
@@ -51,23 +49,55 @@
     </header>
     <div class="page-content wc-container">
   <div class="post">
-    <h1>How to set your unix default editor</h1>
+    <h1>Saving time and avoiding keystrokes</h1>
     <p class="post-meta">
     
     <span class="categories">
-      alias, terminal, ubuntu, and unix
+      alias and terminal health
     </span> |
     
     <span class="post-date">
-      Feb 23, 2014
+      Feb 11, 2014
     </span>
     </p>
     <div class="post">
-      <p>I can’t count how many times in the past I had troubles with unix complaining I don’t have a default editor.</p>
+      <p>Our brains are incredibly fast, as well as our computers. We should not decrease this speed, with our slow fingers or too many keystrokes. <strong>It is important to avoid unnecessary typing. </strong></p>
 
-<p>To fix this issue is ridiculously simple:, just edit your <a href="http://en.wikipedia.org/wiki/Bash_(Unix_shell)" target="_blank">bashrc</a> and add this line<span style="line-height: 1.5;">:</span></p>
+<p>One way to do that is <strong>creating some aliases</strong> on the shell, which improves our speed but also avoids some good amount of keystrokes,  saving your health in the long term.</p>
 
-<pre class="lang:default decode:true" title="bashrc">export EDITOR='vim'</pre>
+<p>Please, do some simple math with me: if you type <em>‘git status’</em> 20 times a day, it is 100 times per week, 400 times per month and ~5000 times per year.<br />
+In a professional lifetime, you’d type these 10 keystrokes, &gt; 100.000 times,  which gives us an incredible mark of <strong>1 MILLION keystrokes just to know what has changed in our code</strong>.</p>
+
+<p>I use <em>‘gst’</em> as an alias. It <strong>saves me 7 keystrokes per time</strong>, which is &gt; 60% of the total keystrokes. We can say that I will avoid more than <strong>500.000 keystrokes in my dev lifetime</strong> (20 years?!?).  And it is only one of my aliases.</p>
+
+<p>So you can ask me to share  my aliases with you, and I’d gladly do that, actually, take a look on my dotfiles here (<a href="https://github.com/fellipebrito/dotfiles" target="_blank">https://github.com/fellipebrito/dotfiles</a>) however keep in mind that they are my customized alias, of course you can use that, but it would be better to know which commands you use often, would not it?</p>
+
+<p>In order to help you (and help me) I am always watching screencasts and trying to capture new stuff that good developers are doing out there (You also might go to github, read  a bunch of public repositories, it is a great way to learn a lot with those guys), so <a href="http://codeulate.com/" target="_blank">Ben Orenstein</a> came up with this idea in his <a href="http://goruco.com/" target="_blank">GoRuCo</a> conference (and he also confirms he did not create that but grabbed it from the internet). (<em>if you are humble and smart enough you will see that you can learn a lot with the content that is already out there and  you can accept that at least 70% of what you code was inspired or copied from something else.</em>)</p>
+
+<p>Well, less talk more code. If you want to know which aliases you should create, to know which are your top 20 most recurrent commands on the terminal, just use this command:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">history</span> <span class="p">|</span> awk <span class="s1">&#39;{a[$2]++}END{for(i in a){print a[i] &quot; &quot; i}}&#39;</span> <span class="p">|</span> sort -rn <span class="p">|</span> head -20
+<span class="m">100</span> ls
+<span class="m">55</span> <span class="nb">cd</span>
+<span class="m">49</span> git
+<span class="m">43</span> vim
+<span class="m">28</span> vagrant
+<span class="m">19</span> vup
+<span class="m">17</span> cat
+<span class="m">13</span> <span class="nb">source</span>
+<span class="m">13</span> <span class="nb">fg</span>
+<span class="m">13</span> <span class="nb">exit</span>
+<span class="m">12</span> <span class="nb">pwd</span>
+<span class="m">12</span> open
+<span class="m">10</span> rm
+<span class="m">8</span> l
+<span class="m">7</span> which
+<span class="m">7</span> brew
+<span class="m">6</span> sudo
+<span class="m">6</span> mkdir
+<span class="m">5</span> reset
+<span class="m">5</span> ping</code></pre></div>
+
 
     </div>
   </div>
@@ -99,13 +129,13 @@
   <div class="post-footer">
     <div class="column-1">
       
-      <a href="/2014/02/be-more-productive-with-tmuxinator/"><< Older</a>
+      <a href="/2014/02/cucumber-beginner-tips/"><< Older</a>
       
     </div>
     <div class="column-2"><a href="/ ">Home</a></div>
     <div class="column-3">
       
-      <a href="/fatal-error-while-bundling-capybara-webkit">Newer >></a>
+      <a href="/2014/02/be-more-productive-with-tmuxinator/">Newer >></a>
       
     </div>
   </div>
