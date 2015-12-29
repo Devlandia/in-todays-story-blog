@@ -5,8 +5,8 @@
     <description>by Fellipe Brito about Ruby, Clojure, VIM and an Engineer&#39;s life</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 29 Dec 2015 09:25:05 +0000</pubDate>
-    <lastBuildDate>Tue, 29 Dec 2015 09:25:05 +0000</lastBuildDate>
+    <pubDate>Tue, 29 Dec 2015 09:28:57 +0000</pubDate>
+    <lastBuildDate>Tue, 29 Dec 2015 09:28:57 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -312,20 +312,20 @@ end
         <title>Fatal error while bundling capybara-webkit</title>
         <description>&lt;p&gt;The error:&lt;/p&gt;
 
-&lt;pre class=&quot;lang:default decode:true&quot;&gt;Fatal error while bundling capybara-webkit (0.10.1) with native extensions&lt;/pre&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Fatal error &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; bundling capybara-webkit &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.10.1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; with native extensions&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;How to fix:&lt;/p&gt;
 
-&lt;pre class=&quot;lang:default decode:true&quot;&gt;apt-get install qt4
-gem install capybara-webkit -v &#39;1.1.0&#39;&lt;/pre&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;apt-get install qt4
+gem install capybara-webkit -v &lt;span class=&quot;s1&quot;&gt;&amp;#39;1.1.0&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you need further information read &lt;a href=&quot;https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;You’re welcome.&lt;/p&gt;
 </description>
         <pubDate>Wed, 19 Mar 2014 00:00:00 +0000</pubDate>
-        <link>/2014/03/fatal-error-while-bundling-capybara-webkit/</link>
-        <guid isPermaLink="true">/2014/03/fatal-error-while-bundling-capybara-webkit/</guid>
+        <link>/fatal-error-while-bundling-capybara-webkit</link>
+        <guid isPermaLink="true">/fatal-error-while-bundling-capybara-webkit</guid>
         
         
         <category>capybara</category>

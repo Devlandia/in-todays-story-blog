@@ -5,18 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Fatal error while bundling capybara-webkit</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
-">
+    <meta name="description" content="Fatal error while bundling capybara-webkit (0.10.1) with native extensions">
     <link rel="canonical"
-          href="/2014/03/fatal-error-while-bundling-capybara-webkit/">
+          href="/fatal-error-while-bundling-capybara-webkit">
 
     <!-- Facebook Tags -->
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://s.gravatar.com/avatar/23269595e78e142199d43a01d45e8fdd?s=800" />
     <meta property="og:image:width" content="2400" />
     <meta property="og:image:height" content="1300"/>
-    <meta property="og:description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
-"/>
+    <meta property="og:description" content="Fatal error while bundling capybara-webkit (0.10.1) with native extensions"/>
     <meta property="og:title" content="Fatal error while bundling capybara-webkit"/>
 
     <!-- Harmony styles -->
@@ -65,12 +63,12 @@
     <div class="post">
       <p>The error:</p>
 
-<pre class="lang:default decode:true">Fatal error while bundling capybara-webkit (0.10.1) with native extensions</pre>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">Fatal error <span class="k">while</span> bundling capybara-webkit <span class="o">(</span>0.10.1<span class="o">)</span> with native extensions</code></pre></div>
 
 <p>How to fix:</p>
 
-<pre class="lang:default decode:true">apt-get install qt4
-gem install capybara-webkit -v '1.1.0'</pre>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">apt-get install qt4
+gem install capybara-webkit -v <span class="s1">&#39;1.1.0&#39;</span></code></pre></div>
 
 <p>If you need further information read <a href="https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit" target="_blank">here</a></p>
 
