@@ -1,23 +1,18 @@
 ---
 title: How to update my remote branch information
-author: fellipe
+meta_description: To clean-up your remote references, or only your local mess.
 layout: post
-permalink: /2014/05/how-to-update-my-remote-branch-information/
-perfect_quote_author:
-  - 
-perfect_quote_where:
-  - 
-sharepress_meta:
-  - 'a:1:{s:7:"enabled";s:3:"off";}'
-sharepress_twitter_meta:
-  - 'a:1:{s:7:"enabled";s:3:"off";}'
-categories:
-  - Uncategorized
+permalink: how-to-update-my-remote-branch-information
+categories: [git, github]
 ---
 To clean-up your remote references:
 
-<pre class="lang:default decode:true">git remote prune origin</pre>
+{% highlight bash %}
+git remote prune origin
+{% endhighlight %}
 
 If you want to clean up your local mess, you also can use:
 
-<pre class="lang:default decode:true">git branch -r</pre>
+{% highlight bash %}
+git branch -r
+{% endhighlight %}

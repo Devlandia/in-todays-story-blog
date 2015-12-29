@@ -5,8 +5,8 @@
     <description>by Fellipe Brito about Ruby, Clojure, VIM and an Engineer&#39;s life</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 29 Dec 2015 09:21:54 +0000</pubDate>
-    <lastBuildDate>Tue, 29 Dec 2015 09:21:54 +0000</lastBuildDate>
+    <pubDate>Tue, 29 Dec 2015 09:25:05 +0000</pubDate>
+    <lastBuildDate>Tue, 29 Dec 2015 09:25:05 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -290,18 +290,21 @@ end
         <title>How to update my remote branch information</title>
         <description>&lt;p&gt;To clean-up your remote references:&lt;/p&gt;
 
-&lt;pre class=&quot;lang:default decode:true&quot;&gt;git remote prune origin&lt;/pre&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git remote prune origin&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you want to clean up your local mess, you also can use:&lt;/p&gt;
 
-&lt;pre class=&quot;lang:default decode:true&quot;&gt;git branch -r&lt;/pre&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git branch -r&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 </description>
         <pubDate>Tue, 06 May 2014 00:00:00 +0000</pubDate>
-        <link>/2014/05/how-to-update-my-remote-branch-information/</link>
-        <guid isPermaLink="true">/2014/05/how-to-update-my-remote-branch-information/</guid>
+        <link>/how-to-update-my-remote-branch-information</link>
+        <guid isPermaLink="true">/how-to-update-my-remote-branch-information</guid>
         
         
-        <category>uncategorized</category>
+        <category>git</category>
+        
+        <category>github</category>
         
       </item>
     
