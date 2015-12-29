@@ -5,8 +5,8 @@
     <description>by Fellipe Brito about Ruby, Clojure, VIM and an Engineer&#39;s life</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 29 Dec 2015 05:31:51 +0000</pubDate>
-    <lastBuildDate>Tue, 29 Dec 2015 05:31:51 +0000</lastBuildDate>
+    <pubDate>Tue, 29 Dec 2015 09:09:28 +0000</pubDate>
+    <lastBuildDate>Tue, 29 Dec 2015 09:09:28 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -109,44 +109,6 @@ send &lt;span class=&quot;s2&quot;&gt;&amp;quot;exit\r&amp;quot;&lt;/span&gt;&lt
       </item>
     
       <item>
-        <title>Resizing splits</title>
-        <description>&lt;p&gt;&lt;em&gt;by &lt;a href=&quot;https://github.com/fellipebrito&quot;&gt;@fellipebrito&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;One of the things I most like in VIM is the easy way to split its environment. Using VIM splits + &lt;a href=&quot;https://github.com/kien/ctrlp.vim&quot;&gt;ctrlP&lt;/a&gt; + &lt;a href=&quot;http://en.wikipedia.org/wiki/Tmux&quot;&gt;tMux&lt;/a&gt; makes me a lot more productive.&lt;/p&gt;
-
-&lt;p&gt;Sometimes I want to read a manual, a helper, a README, or even just want to read my code in ‘full screen’. This is how I do it:&lt;/p&gt;
-
-&lt;p&gt;Maximize the current sprint in the vertical:
-&lt;code&gt;
-ctrl + w _
-&lt;/code&gt;
-&amp;gt; &lt;em&gt;ctrl + w means you have to press the key Ctrl and the key w at the same time and then release them to press the next key&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Maximize the current sprint in the horizontal:
-&lt;code&gt;
-ctrl + w |
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Resize all splits to be the same (also called ‘normalize’)
-&lt;code&gt;
-ctrl + w =
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Ask for help! VIM’s helper is pretty useful, let’s say you like the examples above and want to go further. I’d suggest that before you google it, you invest sometime → some time reading VIM’s help.
-&lt;code&gt;
-:help :split
-&lt;/code&gt;&lt;/p&gt;
-</description>
-        <pubDate>Wed, 11 Mar 2015 16:00:00 +0000</pubDate>
-        <link>/vim/2015/03/11/resizing-splits/</link>
-        <guid isPermaLink="true">/vim/2015/03/11/resizing-splits/</guid>
-        
-        
-        <category>vim</category>
-        
-      </item>
-    
-      <item>
         <title>Lein Ring Server running in the background</title>
         <description>&lt;p&gt;&lt;em&gt;by &lt;a href=&quot;https://github.com/fellipebrito&quot;&gt;@fellipebrito&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 
@@ -166,6 +128,42 @@ nohup lein ring server-headless 8080 &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;
         <category>shell</category>
         
         <category>clojure</category>
+        
+      </item>
+    
+      <item>
+        <title>Resizing splits</title>
+        <description>&lt;p&gt;One of the things I most like in VIM is the easy way to split its environment. Using VIM splits + &lt;a href=&quot;https://github.com/kien/ctrlp.vim&quot;&gt;ctrlP&lt;/a&gt; + &lt;a href=&quot;http://en.wikipedia.org/wiki/Tmux&quot;&gt;tMux&lt;/a&gt; makes me a lot more productive.&lt;/p&gt;
+
+&lt;p&gt;Sometimes I want to read a manual, a helper, a README, or even just want to read my code in ‘full screen’. This is how I do it:&lt;/p&gt;
+
+&lt;p&gt;Maximize the current sprint in the vertical:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;ctrl &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;w&lt;/span&gt; _&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;ctrl + w means you have to press the key Ctrl and the key w at the same time and then release them to press the next key&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Maximize the current sprint in the horizontal:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;ctrl &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Resize all splits to be the same (also called ‘normalize’)&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;ctrl &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Ask for help! VIM’s helper is pretty useful, let’s say you like the examples above and want to go further. I’d suggest that before you google it, you invest some time reading VIM’s help.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;help :split&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 11 Mar 2015 00:00:00 +0000</pubDate>
+        <link>/resizing-splits</link>
+        <guid isPermaLink="true">/resizing-splits</guid>
+        
+        
+        <category>vim</category>
         
       </item>
     
