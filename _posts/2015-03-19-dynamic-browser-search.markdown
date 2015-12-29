@@ -1,6 +1,6 @@
 ---
 title: "Dynamic browser searching a yanked text in VIM from a vagrant box"
-meta_description: ""
+meta_description: "My personal computer is dumb. It does not have GitHub keys, Ruby, MySQL or any other dev stuff. The only tool this computer has is a vagrant box (or some boxes). There, inside my vagrant is where I'm happy. The problem is that this vagrant box does not have access to my browser, file preview and other apps that I use. My plan was simple: I'd like to yank a text on vim, execute few keystrokes and then an automated script would open my browser and search for this text in google."
 layout: post
 permalink: dynamic-browser-searching-text-from-vim-inside-a-vagrant-box
 categories: [vim, search, bash, vagrant]
