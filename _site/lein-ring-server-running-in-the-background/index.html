@@ -5,18 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Lein Ring Server running in the background</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
-">
+    <meta name="description" content="there has been an awakening in the force.">
     <link rel="canonical"
-          href="/shell/clojure/2015/03/11/lein-ring-server-running-in-the-background/">
+          href="/lein-ring-server-running-in-the-background">
 
     <!-- Facebook Tags -->
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://s.gravatar.com/avatar/23269595e78e142199d43a01d45e8fdd?s=800" />
     <meta property="og:image:width" content="2400" />
     <meta property="og:image:height" content="1300"/>
-    <meta property="og:description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
-"/>
+    <meta property="og:description" content="there has been an awakening in the force."/>
     <meta property="og:title" content="Lein Ring Server running in the background"/>
 
     <!-- Harmony styles -->
@@ -63,15 +61,14 @@
     </span>
     </p>
     <div class="post">
-      <p><em>by <a href="https://github.com/fellipebrito">@fellipebrito</a></em></p>
+      <p>I’ve been working on a study case that has as a main target to run two different servers at the same time - one for the backend and the other for the frontend. <a href="https://github.com/fellipebrito/front-back-case" target="blank">front-back-case</a>.</p>
 
-<p>I’ve been working in → working on a study case that has as a main target to run two different servers at the same time - one for the backend and the other for the frontend. <a href="https://github.com/fellipebrito/front-back-case">front-back-case</a>.</p>
+<p>In order to not lose time and type less, I’ve been creating scenarios for every back/front server combination. So I can start and kill them with only one line. <a href="https://github.com/fellipebrito/front-back-case/tree/master/bin" target="blank">Here are some of the scripts to start and kill servers</a></p>
 
-<p>In order to not lose time and type less, I’ve been creating scenarios for every back/front server combination. So I can start and kill them with only one line. <a href="https://github.com/fellipebrito/front-back-case/tree/master/bin">scripts to start and kill servers</a></p>
+<p>Today, after I code a simple server in Clojure, I had to figure out how to start a ring server in the background. After few minutes looking for a solution I realised that I could do it using nohup:</p>
 
-<p>Today, after I code a simple server in Clojure, I had to figure out how to start a ring server in the background. After few minutes looking for a solution I realised that I could do it using nohup:
-```
-nohup lein ring server-headless 8080 &gt;/dev/null 2&gt;&amp;1 &amp;</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">nohup lein ring server-headless <span class="m">8080</span> &gt;/dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span></code></pre></div>
+
 
     </div>
   </div>
@@ -103,13 +100,13 @@ nohup lein ring server-headless 8080 &gt;/dev/null 2&gt;&amp;1 &amp;</p>
   <div class="post-footer">
     <div class="column-1">
       
-      <a href="/resizing-splits"><< Older</a>
+      <a href="/javascript/sinatra/ruby/clojure/ring/ajax/2015/03/10/cross-origin-resource-sharing/"><< Older</a>
       
     </div>
     <div class="column-2"><a href="/ ">Home</a></div>
     <div class="column-3">
       
-      <a href="/dynamic-browser-searching-text-from-vim-inside-a-vagrant-box">Newer >></a>
+      <a href="/resizing-splits">Newer >></a>
       
     </div>
   </div>

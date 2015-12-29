@@ -5,8 +5,8 @@
     <description>by Fellipe Brito about Ruby, Clojure, VIM and an Engineer&#39;s life</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 29 Dec 2015 09:09:28 +0000</pubDate>
-    <lastBuildDate>Tue, 29 Dec 2015 09:09:28 +0000</lastBuildDate>
+    <pubDate>Tue, 29 Dec 2015 09:17:34 +0000</pubDate>
+    <lastBuildDate>Tue, 29 Dec 2015 09:17:34 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -109,29 +109,6 @@ send &lt;span class=&quot;s2&quot;&gt;&amp;quot;exit\r&amp;quot;&lt;/span&gt;&lt
       </item>
     
       <item>
-        <title>Lein Ring Server running in the background</title>
-        <description>&lt;p&gt;&lt;em&gt;by &lt;a href=&quot;https://github.com/fellipebrito&quot;&gt;@fellipebrito&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;I’ve been working in → working on a study case that has as a main target to run two different servers at the same time - one for the backend and the other for the frontend. &lt;a href=&quot;https://github.com/fellipebrito/front-back-case&quot;&gt;front-back-case&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;In order to not lose time and type less, I’ve been creating scenarios for every back/front server combination. So I can start and kill them with only one line. &lt;a href=&quot;https://github.com/fellipebrito/front-back-case/tree/master/bin&quot;&gt;scripts to start and kill servers&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Today, after I code a simple server in Clojure, I had to figure out how to start a ring server in the background. After few minutes looking for a solution I realised that I could do it using nohup:
-```
-nohup lein ring server-headless 8080 &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;&lt;/p&gt;
-</description>
-        <pubDate>Wed, 11 Mar 2015 15:30:00 +0000</pubDate>
-        <link>/shell/clojure/2015/03/11/lein-ring-server-running-in-the-background/</link>
-        <guid isPermaLink="true">/shell/clojure/2015/03/11/lein-ring-server-running-in-the-background/</guid>
-        
-        
-        <category>shell</category>
-        
-        <category>clojure</category>
-        
-      </item>
-    
-      <item>
         <title>Resizing splits</title>
         <description>&lt;p&gt;One of the things I most like in VIM is the easy way to split its environment. Using VIM splits + &lt;a href=&quot;https://github.com/kien/ctrlp.vim&quot;&gt;ctrlP&lt;/a&gt; + &lt;a href=&quot;http://en.wikipedia.org/wiki/Tmux&quot;&gt;tMux&lt;/a&gt; makes me a lot more productive.&lt;/p&gt;
 
@@ -164,6 +141,28 @@ nohup lein ring server-headless 8080 &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;
         
         
         <category>vim</category>
+        
+      </item>
+    
+      <item>
+        <title>Lein Ring Server running in the background</title>
+        <description>&lt;p&gt;I’ve been working on a study case that has as a main target to run two different servers at the same time - one for the backend and the other for the frontend. &lt;a href=&quot;https://github.com/fellipebrito/front-back-case&quot; target=&quot;blank&quot;&gt;front-back-case&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In order to not lose time and type less, I’ve been creating scenarios for every back/front server combination. So I can start and kill them with only one line. &lt;a href=&quot;https://github.com/fellipebrito/front-back-case/tree/master/bin&quot; target=&quot;blank&quot;&gt;Here are some of the scripts to start and kill servers&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Today, after I code a simple server in Clojure, I had to figure out how to start a ring server in the background. After few minutes looking for a solution I realised that I could do it using nohup:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;nohup lein ring server-headless &lt;span class=&quot;m&quot;&gt;8080&lt;/span&gt; &amp;gt;/dev/null 2&amp;gt;&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 11 Mar 2015 00:00:00 +0000</pubDate>
+        <link>/lein-ring-server-running-in-the-background</link>
+        <guid isPermaLink="true">/lein-ring-server-running-in-the-background</guid>
+        
+        
+        <category>shell</category>
+        
+        <category>clojure</category>
         
       </item>
     
