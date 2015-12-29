@@ -3,21 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Cucumber Beginner Tips</title>
+    <title>Calculating results of a subselect</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
-">
+    <meta name="description" content="Problem is I have a column with the a video's duration in a string duration and I need to know how many seconds this video has.">
     <link rel="canonical"
-          href="/2014/02/cucumber-beginner-tips/">
+          href="/calculating-results-of-a-subselect">
 
     <!-- Facebook Tags -->
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://s.gravatar.com/avatar/23269595e78e142199d43a01d45e8fdd?s=800" />
     <meta property="og:image:width" content="2400" />
     <meta property="og:image:height" content="1300"/>
-    <meta property="og:description" content="everyday I learn something new and it is important to share this new acquired knowledge with my peers. For that reason I built this magic castle to keep everything I learn.
-"/>
-    <meta property="og:title" content="Cucumber Beginner Tips"/>
+    <meta property="og:description" content="Problem is I have a column with the a video's duration in a string duration and I need to know how many seconds this video has."/>
+    <meta property="og:title" content="Calculating results of a subselect"/>
 
     <!-- Harmony styles -->
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
@@ -51,72 +49,34 @@
     </header>
     <div class="page-content wc-container">
   <div class="post">
-    <h1>Cucumber Beginner Tips</h1>
+    <h1>Calculating results of a subselect</h1>
     <p class="post-meta">
     
     <span class="categories">
-      bdd, cucumber, rspec, ruby, and tdd
+      mysql, sql, subselect, substring, and substring_index
     </span> |
     
     <span class="post-date">
-      Feb 11, 2014
+      Jan 29, 2014
     </span>
     </p>
     <div class="post">
-      <p><a href="http://code.fellipebrito.com/wp-content/uploads/2014/02/url.jpg"><img class="aligncenter size-full wp-image-63" alt="url" src="http://code.fellipebrito.com/wp-content/uploads/2014/02/url.jpg" width="265" height="190" /></a><span style="line-height: 1.5;"> </span><strong>Write declarative features</strong></p>
+      <p>Problem:
+I have a column with the a video’s duration in a string “duration - 4:34”; and I need to know how many seconds this video has.</p>
 
-<p><em>Instead of:</em></p>
+<p>Solution:
+<a href="http://dev.mysql.com/doc/refman/5.0/en/string-functions.html" target="_blank">MySQL</a> has a method <a href="http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_substring-index" target="_blank">SUBSTRING</a> (<a href="http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_substring-index" target="_blank">MySQL Manual</a>) that helps me to split the string so I can easily calculate it (without use sum), and… voila!</p>
 
-<pre class="lang:sh decode:true" title="Wrong way to write features">Feature: Signing up
-
-  Scenario: Signing up successfully
-    Given I go to the home page
-    When I click the link "Sign up"
-    And I fill in "Email" with "email@fellipebrito.com"
-    And I fill in "Password" with "incorrect"
-    And I click the button "Sign up"
-    Then I should see "My Account"</pre>
-
-<p><em>Use:</em></p>
-
-<pre class="lang:sh decode:true" title="Write declarative features">Feature: Signing up
-
-  Scenario: Signing up successfully
-    Given I open Google
-    When I sign up as "email@fellipebrito.com"
-    Then I should be signed im</pre>
-
-<p><strong>Always insert a narrative</strong></p>
-
-<pre class="lang:sh decode:true" title="Always insert a narrative">Feature: Using cucumber
-  In order to specify and implement new features
-  As a software developer
-  I want to write down scenarios in Cucumber
-
-  Scenario: Writing a scenario
-    Given ...</pre>
-
-<p><em>*Avoid conjunctive steps<br />
-**</em>Instead of:*</p>
-
-<pre class="lang:sh decode:true" title="Conjunctive Steps"># feature
-
----
-When I co,pose an email to "email@fellipebrito.com" and I send it
----</pre>
-
-<p><em>Use:</em></p>
-
-<pre class="lang:sh decode:true" title="Avoiding conjunctive steps"># feature
-
----
-When I compose an email to "email@fellipebrito.com"
-And I send an email
----</pre>
-
-<blockquote>
-  <p>Based on <a href="https://twitter.com/clemenshelm" target="_blank">Clemens Helm</a> amazing screencast series: Testing Tuesday</p>
-</blockquote>
+<div class="highlight"><pre><code class="language-mysql" data-lang="mysql"><span class="k">SELECT</span> <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span><span class="p">,</span> 
+       <span class="p">(</span><span class="n">minutes</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span><span class="o">+</span><span class="n">seconds</span> <span class="k">as</span> <span class="n">total_seconds</span> 
+       <span class="k">FROM</span> <span class="p">(</span>
+  <span class="k">SELECT</span> 
+      <span class="nf">TRIM</span><span class="p">(</span><span class="nf">SUBSTRING_INDEX</span><span class="p">(</span><span class="nf">SUBSTRING_INDEX</span><span class="p">(</span><span class="n">duration</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="k">AS</span> <span class="n">minutes</span><span class="p">,</span>
+      <span class="nf">TRIM</span><span class="p">(</span><span class="nf">SUBSTRING_INDEX</span><span class="p">(</span><span class="nf">SUBSTRING_INDEX</span><span class="p">(</span><span class="n">duration</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="k">AS</span> <span class="n">seconds</span>
+    <span class="k">FROM</span> <span class="n">video</span>
+      <span class="k">WHERE</span> <span class="n">duration</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="no">NULL</span>
+      <span class="k">LIMIT</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">videos_subselect</span></code></pre></div>
 
 
     </div>
@@ -149,13 +109,13 @@ And I send an email
   <div class="post-footer">
     <div class="column-1">
       
-      <a href="/2014/01/calculating-results-of-a-subselect/"><< Older</a>
+      <a href="/hello-world"><< Older</a>
       
     </div>
     <div class="column-2"><a href="/ ">Home</a></div>
     <div class="column-3">
       
-      <a href="/saving-time-and-avoiding-keystrokes">Newer >></a>
+      <a href="/cucumber-beginner-tips">Newer >></a>
       
     </div>
   </div>
